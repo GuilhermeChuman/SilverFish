@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ChildrenOutletContexts } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 export class AppComponent {
 
-  //@ViewChild('sidenav') sidenav: MatSidenav;
+  constructor() {}
 
 }

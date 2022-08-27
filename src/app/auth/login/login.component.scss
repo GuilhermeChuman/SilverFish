@@ -7,50 +7,49 @@
     align-items: center;
 
     height: 100vh;
-    background-color: #365897;
+
     background-color: #7ba0e6;
-    background-color: #3eacd8;
-    background-color: #47b127;
-    background-color: #ce5632;
-    background-color: #7710b3;
-    background-color: #5b5b5c;
-}
 
-.buttons{
-    margin: 10px;
-
-    button{
-        background-color: #7ba0e6;
-        background-color: #3eacd8;
-        background-color: #47b127;
-        background-color: #ce5632;
-        background-color: #7710b3;
-        background-color: #5b5b5c;
-        color: white;
-        margin: 5px;
-        width: 100px;
+    .menu{
+        width: 450px;
     }
 }
 
-a{
+.mat-form-field{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #7ba0e6;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+    color: lightgray;
+}
+
+.buttons{
+
+    margin: 10px;
+
+    .enter{
+        background-color: #7ba0e6;
+        color: white;
+        margin-right: 5px;
+    }
+
+    .signup{
+        color:#7ba0e6;
+        border-color: #7ba0e6;
+        margin-left: 5px;
+    }
+}
+
+.forgot{
     margin-top: 15px;
-    color:#365897;
     color:#7ba0e6;
-    color:#3eacd8;
-    color:#47b127;
-    color:#ce5632;
-    color:#7710b3;
-    color:#5b5b5c;
 }
 
 form{
     margin-bottom: 40px;
-}
-
-.menu{
-    width: 350px;
-    height: 60vh;
-
-    display: flex;
-    align-items: center;
 }

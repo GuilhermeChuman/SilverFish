@@ -1,36 +1,42 @@
 <div class="body">
-    <mat-card class="menu">
-        <mat-card-content>
+    <mat-card class="menu" fxLayout="column">
+
+        <mat-card-content fxFlex="100">
 
             <h1>SilverFish</h1>
 
-            <form class="auth" fxLayout="column" >
+            <form class="auth" fxLayout="column" [formGroup]="loginForm">
+
                 <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
                     <mat-label>Login</mat-label>
-                    <input matInput required>
+                    <input matInput required formControlName="login">
                     <mat-error>Login é obrigatório</mat-error>
                 </mat-form-field> 
 
                 <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
                     <mat-label>Senha</mat-label>
-                    <input matInput required>
+                    <input type="password" matInput required formControlName="password">
                     <mat-error>Senha é obrigatório</mat-error>
                 </mat-form-field> 
 
                 <div class="buttons" fxFlex="100"> 
-                    <button mat-raised-button color="primary">
+
+                    <button class="enter" fxFlex="100" (click)="login(loginForm)"
+                            mat-raised-button color="primary">
                         Entrar
                     </button>
 
-                    <button mat-stroked-button color="primary" form="none">
+                    <a button class="signup" mat-stroked-button 
+                       routerLink="/auth/signup" fxFlex="100"
+                       color="primary" form="none">
                         Cadastrar
-                    </button>
+                    </a>
+
                 </div>
                 
-
             </form>
 
-            <a href="">Esqueci minha senha</a>
+            <a class="forgot" routerLink="/auth/recoverPassword">Esqueci minha senha</a>
         </mat-card-content>
     </mat-card>
 </div>
