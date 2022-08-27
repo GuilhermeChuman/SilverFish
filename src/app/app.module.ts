@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { RecoverPasswordComponent } from './auth/recoverPassword/recoverPassword.component';
+import { MasterPageComponent } from './pages/master-pagecomponent';
 
 import { HomeComponent } from './pages/home/home.component';
 
@@ -43,12 +44,10 @@ const routes: Routes = [
     component: RecoverPasswordComponent 
   },
   
-  
-
   //PAGES
   { 
     path: 'pages/home', 
-    component: HomeComponent 
+    component: MasterPageComponent 
   },
 
   //STANDARD
@@ -64,7 +63,8 @@ const routes: Routes = [
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    MasterPageComponent
   ],
   imports: [
     HttpClientModule,

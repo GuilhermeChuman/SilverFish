@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(private _authService: AuthService,
               private router: Router,
               private _snack: MatSnackBar) {
- 
   }
 
   loginForm = new FormGroup({
@@ -28,14 +27,15 @@ export class LoginComponent implements OnInit {
 
   async login(data:FormGroup){
 
-    await this._authService.login(environment.api_url_local,environment.auth_login, data.getRawValue()).then((resp:any) =>{
+    if(data.valid)
+      await this._authService.login(environment.api_url_local,environment.auth_login, data.getRawValue()).then((resp:any) =>{
 
-      if(!resp.success)
-        this._snack.open(resp.message,'OK');
-      
-      else
-        this.router.navigate(['/pages/home']);
+        if(!resp.success)
+          this._snack.open(resp.message,'OK');
+        
+        else
+          this.router.navigate(['/pages/home']);
 
-    });
+      });
   }
 }
