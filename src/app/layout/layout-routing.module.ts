@@ -15,16 +15,32 @@ const routes: Routes = [
     path: '',
     component: HeaderSideComponent,
     children: [
-      { path: 'pages/home', loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)},
+      { 
+        path: 'pages/home', 
+        loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
+      },
+      { 
+        path: 'pages/profile', 
+        loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
+      },
     ]
   },
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: 'auth/login', loadChildren: () => import('../auth/login/login.module').then(m => m.LoginModule)},
-      { path: 'auth/signup', loadChildren: () => import('../auth/signup/signup.module').then(m => m.SignupModule)},
-      { path: 'auth/recovery', loadChildren: () => import('../auth/recoverPassword/recoveryPassword.module').then(m => m.RecoverPasswordModule)},
+      { 
+        path: 'auth/login', 
+        loadChildren: () => import('../auth/login/login.module').then(m => m.LoginModule)
+      },
+      { 
+        path: 'auth/signup', 
+        loadChildren: () => import('../auth/signup/signup.module').then(m => m.SignupModule)
+      },
+      { 
+        path: 'auth/recovery', 
+        loadChildren: () => import('../auth/recoverPassword/recoveryPassword.module').then(m => m.RecoverPasswordModule)
+      },
     ]
   },
 ];

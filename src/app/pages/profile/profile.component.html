@@ -1,0 +1,22 @@
+<div class="body">
+    <h1>User's profile</h1>
+    <mat-divider></mat-divider>
+    <div class="content" fxLayout="row">
+        <div class="statistics" fxLayout="column" fxFlex="50">
+            <h2>Estatísticas</h2>
+            <canvas class="chart" id="stats" width="2" height="1"></canvas>
+        </div>
+        <div class="statistics" fxLayout="column" fxFlex="50">
+            <h2>Histórico</h2>
+            <div fxLayout="row wrap">
+                <img class="capa" src="img_girl.jpg" width="150" height="200">
+                <img class="capa" src="img_girl.jpg" width="150" height="200">
+                <img class="capa" src="img_girl.jpg" width="150" height="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loaded" class="body">
+    <mat-spinner></mat-spinner>
+</div>
