@@ -28,14 +28,11 @@ export class LoginComponent implements OnInit {
   async login(data:FormGroup){
 
     if(data.valid)
-      await this._authService.login(environment.api_url_local,environment.auth_login, data.getRawValue()).then((resp:any) =>{
-
-        if(!resp.success)
-          this._snack.open(resp.message,'OK');
-        
-        else
+      await this._authService.login(data.getRawValue()).subscribe( (logged:any) =>{
+        if(logged){
           this.router.navigate(['/pages/home']);
-
+        }
+        
       });
   }
 }

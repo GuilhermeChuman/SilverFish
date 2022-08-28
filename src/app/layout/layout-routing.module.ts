@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuardService } from '../auth/authGuard.service';
+
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { HeaderSideComponent } from './header-side-layout/header-side.component';
@@ -14,6 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: HeaderSideComponent,
+    canActivate: [AuthGuardService],
     children: [
       { 
         path: 'pages/home', 

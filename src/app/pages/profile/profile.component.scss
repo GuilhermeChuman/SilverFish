@@ -5,6 +5,10 @@
     height: 100%;
 }
 
+.statistics{
+    margin-right: 10px;
+}
+
 .capa{
     margin-right: 20px;
     margin-bottom: 20px;
@@ -14,3 +18,25 @@
     max-width: 400px;
     max-height: 250px;
 }
+
+//SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:none; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { HeaderSideComponent } from './header-side-layout/header-side.component';
@@ -28,7 +30,9 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
   exports: [],
   declarations: [

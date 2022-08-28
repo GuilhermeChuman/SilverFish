@@ -12,7 +12,57 @@
     align-content: center;
     align-items: center;
     flex-direction: row;
+    background-color:  #7ba0e6;
+    color:white;
 
+}
+
+.menuItem{
+    text-decoration: none;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: flex-end;
+    color: white;
+
+    p{
+        margin: 0px;
+        margin-left: 5px;
+    }
+}
+
+.expandMenuItem{
+    background: none;
+    box-shadow: none !important;
+
+    p{
+        font-size: 15px;
+    }
+
+    .menuItem{
+        padding: 0px;
+    }
+
+    .mat-expansion-indicator{
+        color: white;
+    }
+
+    mat-panel-title{
+        color: white;
+
+        mat-icon{
+            margin-right: 5px;
+        }
+    }
+}
+
+mat-expansion-panel-header{
+    padding: 0px;
+}
+
+mat-expansion-panel-header:hover{
+    background: none;
+    background-color: none;
 }
 
 .example-sidenav-content {
@@ -24,6 +74,6 @@
 
 .example-sidenav {
     padding: 20px;
-    width: 250px;
-    background-color: brown;
+    width: 300px;
+    background-color:  #658acf;;
 }

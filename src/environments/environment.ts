@@ -8,6 +8,8 @@ export const environment = {
   api_url_local: 'http://127.0.0.1:8000',
   api_url_prod: 'http://127.0.0.1:8000',
 
-  auth_login: '/auth'
+  auth_login: '/auth',
+
+  get_allUsers: '/usuarios'
 
 };

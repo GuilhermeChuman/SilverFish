@@ -1,11 +1,63 @@
 <mat-drawer-container class="example-container" autosize>
   
     <mat-drawer #drawer class="example-sidenav" mode="over">
+      <div fxLayout="column">       
+        <div class="menu">
+
+          <a class="menuItem" routerLink="/pages/home">
+            <div class="menuItem" fxLayout="row">
+              <mat-icon>home</mat-icon>
+              <p>Home</p>
+            </div>
+          </a>
+
+          <mat-divider></mat-divider>
+
+          <a class="menuItem" routerLink="/pages/profile">
+            <div class="menuItem" fxLayout="row">
+              <mat-icon>person</mat-icon>
+              <p>Perfil</p>
+            </div>
+          </a>
+
+          <mat-divider></mat-divider>
+
+          <a class="menuItem" routerLink="/pages/home">
+            <div class="menuItem" fxLayout="row">
+              <mat-icon>library_books</mat-icon>
+              <p>Livros</p>
+            </div>
+          </a>
+
+          <mat-divider></mat-divider>
+
+          <mat-expansion-panel class="expandMenuItem">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>settings</mat-icon> Ações
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+        
+            <a class="menuItem" routerLink="/pages/home">
+              <div class="menuItem" fxLayout="row" (click)="exit()">
+                <mat-icon>exit_to_app</mat-icon>
+                <p>Sair</p>
+              </div>
+            </a>
+
+          </mat-expansion-panel>
+
+
+
+          <mat-divider></mat-divider>
+
+        </div>
+      </div>
     </mat-drawer>
   
     <div class="main">
   
-      <mat-toolbar class="toolbar" color="primary">
+      <mat-toolbar class="toolbar">
   
         <div>
           <button mat-icon-button class="example-icon" 

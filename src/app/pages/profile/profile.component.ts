@@ -64,6 +64,13 @@ export class ProfileComponent implements OnInit, AfterViewInit{
           plugins: {
             legend: {
               position: 'right',
+              labels:{
+                color: 'black',
+                font:{
+                  size: 18,
+                  weight: 'bold'
+                }
+              }
             }
           }
         }
