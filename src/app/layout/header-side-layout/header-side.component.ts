@@ -18,7 +18,7 @@ export class HeaderSideComponent implements OnInit {
   }
 
   exit(){
-    this._authService.setLoggedOut();
+    //this._authService.setLoggedOut();
     this.router.navigate(['/auth/login']);
   }
 

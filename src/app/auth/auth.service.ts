@@ -1,66 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, of, from, BehaviorSubject } from 'rxjs';
 import { APIService } from '../services/api.service';
-import { catchError, retry } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
-import { Session } from './session';
+import { JWTService } from './jwt.service';
+import { MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()
 
 export class AuthService {
 
-    constructor(private http: HttpClient, 
+    constructor(private _snack: MatSnackBar,
+                private tokenService: JWTService,
                 private _apiService: APIService) {}
 
-
-    private isloggedIn = new BehaviorSubject(false);
-    private loggedInUser: any | undefined;
-
-    getAllUsers():  Observable<Session[]>{
-
-        let usersObservable : any[] = [];
-
-        this._apiService.users.forEach( (element:any) => {
-            usersObservable.push(new Session(element.id, 
-                                                element.login, 
-                                                element.password,
-                                                element.nome, 
-                                                element.email, 
-                                                element.status));
-        });
+    public async login(data:any):Promise<boolean> {
         
-    return of(usersObservable);
-
+        return this._apiService.login(data).then( (resp:any) => {
+            if(resp.success){
+                localStorage.setItem('userData', this.tokenService.tokeninze(resp.data));
+                return true;
+            }
+            else{
+                this._snack.open('Usuário ou senha inválidos', 'OK');
+                return false
+            }
+                
+        });
     }
 
-    login(data:any): Observable<BehaviorSubject<boolean>>{
-
-        this.getAllUsers();
-
-        return this.getAllUsers().pipe(map(users => {
-		let user = users.find(user => (user.login === data.login) && (user.password === data.password));
-            if(user) {
-			    this.isloggedIn.next(true);
-			    this.loggedInUser = new BehaviorSubject(user);
-                this.loggedInUser.subscribe();
-		} else {
-			this.isloggedIn.next(false);
-            this.loggedInUser.subscribe();  
-		} 	
-        return this.isloggedIn;
-	    }));
+    public isLogged(){
+        return this.tokenService.decode(localStorage.getItem('userData')?.toString());
     }
 
-    setLoggedOut(){
-        this.isloggedIn.next(false);
-        this.loggedInUser.next(undefined);
-    }
-
-    isLogged(){
-        console.log(this.isloggedIn.value);
-        return this.isloggedIn.value;
+    public logout(){
+        localStorage.removeItem('userData');
     }
 }

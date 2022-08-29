@@ -13,6 +13,8 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Overlay } from '@angular/cdk/overlay';
 import { APIService } from './services/api.service';
+import { JWTService } from './auth/jwt.service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { APIService } from './services/api.service';
     LayoutModule,
     HttpClientModule
   ],
-  providers: [APIService, AuthService, AuthGuardService, HttpClient, MatSnackBar, Overlay],
+  providers: [APIService, AuthService, AuthGuardService, HttpClient, MatSnackBar, Overlay, JWTService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
