@@ -15,7 +15,13 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   
   canvas: any;
   ctx: any;
-  
+
+  canvas2: any;
+  ctx2: any;
+
+  canvas3: any;
+  ctx3: any;
+
   ngOnInit() {
 
   }
@@ -31,16 +37,13 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.canvas = document.getElementById('stats');
     this.ctx = this.canvas.getContext('2d');
 
-    const data = {
-      
-    };
+    this.canvas2 = document.getElementById('stats2');
+    this.ctx2 = this.canvas2.getContext('2d');
 
-    const config = {
-      type: 'doughnut',
-      data: data,
-    };
+    this.canvas3 = document.getElementById('stats3');
+    this.ctx3 = this.canvas3.getContext('2d');
 
-    let chart = new Chart(this.ctx, {
+    const chart = new Chart(this.ctx, {
         type: 'doughnut',
         data: {
           labels: [
@@ -62,6 +65,10 @@ export class ProfileComponent implements OnInit, AfterViewInit{
         options: {
           responsive: true,
           plugins: {
+            title:{
+              display: true,
+              text: 'Lista de Livros'
+            },
             legend: {
               position: 'right',
               labels:{
@@ -74,6 +81,70 @@ export class ProfileComponent implements OnInit, AfterViewInit{
             }
           }
         }
+    });
+
+    const chart3 = new Chart(this.ctx3, {
+      type: 'line',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [100, 150, 200],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title:{
+            display: true,
+            text: 'Histórico de leitura'
+          },
+          legend: {
+            display: false,
+          } 
+        }
+      }
+    });
+
+    const chart2 = new Chart(this.ctx2, {
+      type: 'bar',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [100, 150, 200],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title:{
+            display: true,
+            text: 'Gosto por gênero'
+          },
+          legend: {
+            display: false,
+          }
+        }
+      }
     });
 
   }

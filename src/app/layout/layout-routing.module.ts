@@ -26,6 +26,10 @@ const routes: Routes = [
         path: 'pages/profile', 
         loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
       },
+      { 
+        path: 'pages/dashboard', 
+        loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
     ]
   },
   {
@@ -45,6 +49,10 @@ const routes: Routes = [
         loadChildren: () => import('../auth/recoverPassword/recoveryPassword.module').then(m => m.RecoverPasswordModule)
       },
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'pages/home',
   },
 ];
 

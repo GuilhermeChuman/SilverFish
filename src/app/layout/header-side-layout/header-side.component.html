@@ -37,17 +37,36 @@
                 <mat-icon>settings</mat-icon> Ações
               </mat-panel-title>
             </mat-expansion-panel-header>
+
+            <a class="menuItem" routerLink="/pages/loan">
+              <div class="menuItem subMenu" fxLayout="row">
+                <mat-icon>table_chart</mat-icon>
+                <p>Empréstimos</p>
+              </div>
+            </a>
+
+            <a class="menuItem" routerLink="/pages/manageBooks">
+              <div class="menuItem subMenu" fxLayout="row">
+                <mat-icon>local_library</mat-icon>
+                <p>Cadastro de Livros</p>
+              </div>
+            </a>
+
+            <a class="menuItem" routerLink="/pages/dashboard">
+              <div class="menuItem subMenu" fxLayout="row">
+                <mat-icon>dashboard</mat-icon>
+                <p>Dashboard</p>
+              </div>
+            </a>
         
             <a class="menuItem" routerLink="/pages/home">
-              <div class="menuItem" fxLayout="row" (click)="exit()">
+              <div class="menuItem subMenu" fxLayout="row" (click)="exit()">
                 <mat-icon>exit_to_app</mat-icon>
                 <p>Sair</p>
               </div>
             </a>
 
           </mat-expansion-panel>
-
-
 
           <mat-divider></mat-divider>
 
@@ -74,7 +93,10 @@
   
       </mat-toolbar>
   
-      <router-outlet></router-outlet>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      
       
     </div>
   

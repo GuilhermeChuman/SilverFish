@@ -19,14 +19,17 @@ export class JWTService {
 
     decode(token: any){
         
+        if(!token)
+            return false;
+
         let data = token.split('.');
 
         let bytes = CryptoJS.AES.decrypt(data[2], 'IDKFA');
         var tokenDate = bytes.toString(CryptoJS.enc.Utf8);
 
-        let time = (new Date().getMilliseconds() - new Date(tokenDate).getMilliseconds())/1000 * 60;
+        let time = (new Date().getTime() - new Date(tokenDate).getTime())/(1000 * 60);
 
-        return (time < 30)      
+        return (time < 30);
 
     }
 

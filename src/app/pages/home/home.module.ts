@@ -13,6 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HomeComponent } from './home.component';
 
@@ -22,7 +24,7 @@ import { HomeComponent } from './home.component';
     ],
     imports: [
       HomeRoutingModule,
- 
+
       FormsModule,
       ReactiveFormsModule,
   
@@ -35,6 +37,8 @@ import { HomeComponent } from './home.component';
       MatFormFieldModule,
       FlexLayoutModule,
       MatSnackBarModule,
+      MatDividerModule,
+      MatProgressSpinnerModule,
     ],
     providers: [],
     bootstrap: []

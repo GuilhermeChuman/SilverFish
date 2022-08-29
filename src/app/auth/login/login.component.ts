@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   async login(data:FormGroup){
-
     if(data.valid)
       await this._authService.login(data.getRawValue()).then( (logged:any) =>{
         if(logged){

@@ -17,8 +17,13 @@ export class HeaderSideComponent implements OnInit {
 
   }
 
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
   exit(){
-    //this._authService.setLoggedOut();
+    this._authService.logout();
+    this.delay(1000);
     this.router.navigate(['/auth/login']);
   }
 

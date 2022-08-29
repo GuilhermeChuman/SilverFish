@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';  
-import { HomeRoutingModule } from './profile-routing.module';
+
+import { HomeRoutingModule } from './dashboard-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -14,22 +14,20 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
 
-import { ProfileComponent } from './profile.component';
+import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
     declarations: [
-      ProfileComponent,
+      DashboardComponent,
     ],
     imports: [
       HomeRoutingModule,
 
       FormsModule,
       ReactiveFormsModule,
-
-      MatProgressSpinnerModule,
   
       MatInputModule,
       MatSidenavModule,
@@ -41,12 +39,11 @@ import { ProfileComponent } from './profile.component';
       FlexLayoutModule,
       MatSnackBarModule,
       MatDividerModule,
-      CommonModule
-
-
+      MatTableModule,
+      MatProgressSpinnerModule,
     ],
     providers: [],
     bootstrap: []
   })
-  export class ProfileModule { }
+  export class DashboardModule { }
   

@@ -3,6 +3,38 @@
     overflow-y: hidden;
 }
 
+.footer{
+    height: 50px;
+}
+
+//SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background:none; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.content{
+    padding-left: 50px;
+    padding-right: 50px; 
+    overflow:auto;
+    height: calc(100vh - 60px);
+}
+
 .toolbar{
     display: flex;
     justify-content: space-between;
@@ -14,7 +46,12 @@
     flex-direction: row;
     background-color:  #7ba0e6;
     color:white;
+    height: 60px;
 
+}
+
+.subMenu{
+    margin-bottom: 15px;
 }
 
 .menuItem{
