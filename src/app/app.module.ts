@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Overlay } from '@angular/cdk/overlay';
 import { APIService } from './services/api.service';
 import { JWTService } from './auth/jwt.service';
+import { RoleGuardService } from './auth/roleGuard.service';
 
 
 @NgModule({
@@ -27,7 +28,16 @@ import { JWTService } from './auth/jwt.service';
     LayoutModule,
     HttpClientModule
   ],
-  providers: [APIService, AuthService, AuthGuardService, HttpClient, MatSnackBar, Overlay, JWTService],
+  providers: [
+    APIService, 
+    AuthService, 
+    AuthGuardService, 
+    RoleGuardService, 
+    HttpClient, 
+    MatSnackBar, 
+    Overlay, 
+    JWTService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

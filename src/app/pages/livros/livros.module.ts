@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
+import { LivrosRoutingModule } from './livros-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,14 +17,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
-import { DashboardComponent } from './dashboard.component';
+import { LivrosComponent } from './livros.component';
 
 @NgModule({
     declarations: [
-      DashboardComponent,
+      LivrosComponent,
     ],
     imports: [
-      DashboardRoutingModule,
+      LivrosRoutingModule,
 
       FormsModule,
       ReactiveFormsModule,
@@ -45,5 +45,5 @@ import { DashboardComponent } from './dashboard.component';
     providers: [],
     bootstrap: []
   })
-  export class DashboardModule { }
+  export class LivrosModule { }
   

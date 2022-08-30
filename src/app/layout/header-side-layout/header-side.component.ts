@@ -23,7 +23,6 @@ export class HeaderSideComponent implements OnInit {
 
   exit(){
     this._authService.logout();
-    this.delay(1000);
     this.router.navigate(['/auth/login']);
   }
 

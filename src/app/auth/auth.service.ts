@@ -31,6 +31,10 @@ export class AuthService {
         return this.tokenService.decode(localStorage.getItem('userData')?.toString());
     }
 
+    public isAdm(){
+        return this.tokenService.decodeRole(localStorage.getItem('userData')?.toString(), 'A');
+    }
+
     public logout(){
         localStorage.removeItem('userData');
     }

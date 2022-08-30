@@ -33,5 +33,21 @@ export class JWTService {
 
     }
 
+    decodeRole(token:any, role:any){
+
+        if(!token)
+            return false;
+
+        let data = token.split('.');
+
+        let bytes = CryptoJS.AES.decrypt(data[0], 'IDKFA');
+        let tokenData = bytes.toString(CryptoJS.enc.Utf8);
+
+        let roleArray = tokenData.split(';');
+
+        return (roleArray[4] == role);
+
+    }
+
 
 }

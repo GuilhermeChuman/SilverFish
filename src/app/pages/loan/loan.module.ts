@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
+import { LoanRoutingModule } from './loan-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,14 +17,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
-import { DashboardComponent } from './dashboard.component';
+import { LoanComponent } from './loan.component';
 
 @NgModule({
     declarations: [
-      DashboardComponent,
+      LoanComponent,
     ],
     imports: [
-      DashboardRoutingModule,
+      LoanRoutingModule,
 
       FormsModule,
       ReactiveFormsModule,
@@ -45,5 +45,5 @@ import { DashboardComponent } from './dashboard.component';
     providers: [],
     bootstrap: []
   })
-  export class DashboardModule { }
+  export class LoanModule { }
   

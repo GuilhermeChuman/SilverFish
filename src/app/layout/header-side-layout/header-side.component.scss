@@ -50,6 +50,10 @@
 
 }
 
+::ng-deep .mat-simple-snackbar-action {
+    color: lightgray;
+}
+
 .subMenu{
     margin-bottom: 15px;
 }

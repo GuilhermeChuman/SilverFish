@@ -6,6 +6,7 @@ import { AuthGuardService } from '../auth/authGuard.service';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { HeaderSideComponent } from './header-side-layout/header-side.component';
+import { RoleGuardService } from '../auth/roleGuard.service';
 
 const routes: Routes = [
   {
@@ -25,11 +26,27 @@ const routes: Routes = [
       { 
         path: 'pages/profile', 
         loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
-      },
+      },      
+    ]
+  },
+  {
+    path: '',
+    component: HeaderSideComponent,
+    canActivate: [AuthGuardService, RoleGuardService],
+    children: [
       { 
         path: 'pages/dashboard', 
         loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+      { 
+        path: 'pages/loan', 
+        loadChildren: () => import('../pages/loan/loan.module').then(m => m.LoanModule)
+      },
+      { 
+        path: 'pages/manageBooks', 
+        loadChildren: () => import('../pages/livros/livros.module').then(m => m.LivrosModule)
+      },
+      
     ]
   },
   {
