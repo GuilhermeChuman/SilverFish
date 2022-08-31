@@ -10,6 +10,8 @@ export const environment = {
 
   auth_login: '/auth',
 
-  get_allUsers: '/usuarios'
+  get_allUsers: '/usuarios',
+
+  get_allEditoras: '/editoras'
 
 };

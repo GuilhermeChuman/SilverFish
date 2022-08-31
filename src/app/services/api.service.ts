@@ -13,4 +13,10 @@ export class APIService {
             return resp;
         });
     }
+
+    async getAll(route:any){
+        return await this.http.get(`${ environment.api_url_local }${route}`).toPromise().then(resp =>{
+            return resp;
+        });
+    }
 }

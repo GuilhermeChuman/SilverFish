@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
       },
       { 
+        path: 'pages/books', 
+        loadChildren: () => import('../pages/livros/livros.module').then(m => m.LivrosModule)
+      },   
+      { 
         path: 'pages/profile', 
         loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
       },      
@@ -44,7 +48,7 @@ const routes: Routes = [
       },
       { 
         path: 'pages/manageBooks', 
-        loadChildren: () => import('../pages/livros/livros.module').then(m => m.LivrosModule)
+        loadChildren: () => import('../pages/manageBooks/manageBooks.module').then(m => m.ManageBooksModule)
       },
       
     ]

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { LivrosRoutingModule } from './livros-routing.module';
+import { ManageBooksRoutingModule } from './manageBooks-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -15,16 +15,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
-
-import { LivrosComponent } from './livros.component';
+import { ManageBooksComponent } from './manageBooks.component';
+import { ManageBooksService } from './manageBooks.service';
+import { ModalManagerComponent } from './modalManager/modalManager.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
-      LivrosComponent,
+      ManageBooksComponent,
+      ModalManagerComponent
     ],
     imports: [
-      LivrosRoutingModule,
+      ManageBooksRoutingModule,
 
       FormsModule,
       ReactiveFormsModule,
@@ -39,10 +46,16 @@ import { LivrosComponent } from './livros.component';
       FlexLayoutModule,
       MatSnackBarModule,
       MatDividerModule,
+      MatTableModule,
       MatProgressSpinnerModule,
+      MatTabsModule,
+      MatPaginatorModule,
+      MatSortModule,
+      MatDialogModule
+      
     ],
-    providers: [],
+    providers: [ManageBooksService, MatDialog],
     bootstrap: []
   })
-  export class LivrosModule { }
+  export class ManageBooksModule { }
   

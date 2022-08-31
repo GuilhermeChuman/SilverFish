@@ -1,0 +1,144 @@
+<div class="body">
+
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Livros">
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+          <button class="add" mat-raised-button>
+            Adicionar novo livro
+          </button>
+        </div>
+        
+
+      </mat-tab>
+
+      <mat-tab label="Editoras">
+        
+        <mat-table [dataSource]="dataSourceEditora" class="mat-elevation-z8">
+
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef fxFlex="20"> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="20"> {{element.id}} </mat-cell>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="nome">
+            <mat-header-cell *matHeaderCellDef fxFlex="50"> Nome </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="50"> {{element.nome}} </mat-cell>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="actions">
+            <mat-header-cell class="centerColumn" *matHeaderCellDef fxFlex="30"> Ações </mat-header-cell>
+            <mat-cell class="centerColumn" *matCellDef="let element" fxFlex="30">
+
+              <button class="tableButton" (click)="openDialog()" mat-button>
+                <mat-icon>add_box</mat-icon>
+              </button> 
+              
+              <button class="tableButton" mat-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button class="tableButton" mat-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </mat-cell>
+          </ng-container>
+                
+          <mat-header-row @rowsAnimation *matHeaderRowDef="displayedColumnsEditora"></mat-header-row>
+          <mat-row @rowsAnimation *matRowDef="let row; columns: displayedColumnsEditora;"></mat-row>
+        </mat-table>
+
+        <mat-paginator  [pageSizeOptions]="[5, 10]"
+                        showFirstLastButtons >
+        </mat-paginator>
+
+        <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+          <button class="add" mat-raised-button>
+            Adicionar nova editora
+          </button>
+        </div>
+        
+        
+
+      </mat-tab>
+
+      <mat-tab label="Autores">
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+          <button class="add" mat-raised-button>
+            Adicionar novo autor
+          </button>
+        </div>
+        
+
+      </mat-tab>
+
+
+    </mat-tab-group>
+    
+
+    <div class="footer"></div>
+
+</div>
