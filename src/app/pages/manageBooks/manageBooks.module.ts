@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 
 import { ManageBooksRoutingModule } from './manageBooks-routing.module';
 
@@ -22,13 +23,13 @@ import { MatSortModule } from '@angular/material/sort';
 
 import { ManageBooksComponent } from './manageBooks.component';
 import { ManageBooksService } from './manageBooks.service';
-import { ModalManagerComponent } from './modalManager/modalManager.component';
+import { ModalManageEditoraComponent } from './manager/modalManageEditora/modalManageEditora.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
       ManageBooksComponent,
-      ModalManagerComponent
+      ModalManageEditoraComponent
     ],
     imports: [
       ManageBooksRoutingModule,
@@ -51,7 +52,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       MatTabsModule,
       MatPaginatorModule,
       MatSortModule,
-      MatDialogModule
+      MatDialogModule,
+      CommonModule
       
     ],
     providers: [ManageBooksService, MatDialog],

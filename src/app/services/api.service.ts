@@ -19,4 +19,22 @@ export class APIService {
             return resp;
         });
     }
+
+    async add(route:any, data:any){
+        return await this.http.post(`${ environment.api_url_local }${route}`,data).toPromise().then(resp =>{
+            return resp;
+        });
+    }
+
+    async edit(route:any, id:any, data:any){
+        return await this.http.put(`${ environment.api_url_local }${route}${id}`, data).toPromise().then(resp =>{
+            return resp;
+        });
+    }
+
+    async delete(route:any, id:any){
+        return await this.http.delete(`${ environment.api_url_local }${route}${id}`).toPromise().then(resp =>{
+            return resp;
+        });
+    }
 }

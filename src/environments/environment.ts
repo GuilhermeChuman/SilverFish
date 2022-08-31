@@ -12,6 +12,14 @@ export const environment = {
 
   get_allUsers: '/usuarios',
 
-  get_allEditoras: '/editoras'
+  get_allEditoras: '/editoras',
+  add_editora: '/addEditora',
+  edit_editora: '/editEditora/',
+  delete_editora: '/deleteEditora/',
+
+  get_allAutores: '/autores',
+  add_autor: '/addAutor',
+  edit_autor: '/editAutor/',
+  delete_autor: '/deleteAutor/',
 
 };

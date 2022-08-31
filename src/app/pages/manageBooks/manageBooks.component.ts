@@ -4,7 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ManageBooksService } from './manageBooks.service';
 import { rowsAnimation } from 'src/app/animations/table.animations';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalManagerComponent } from './modalManager/modalManager.component';
+import { ModalManageEditoraComponent } from './manager/modalManageEditora/modalManageEditora.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,46 +18,87 @@ import { ModalManagerComponent } from './modalManager/modalManager.component';
 
 export class ManageBooksComponent implements OnInit{
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatPaginator) paginatorEditora: MatPaginator | undefined;
+  @ViewChild(MatPaginator) paginatorAutor: MatPaginator | undefined;
 
   constructor(private _manageService: ManageBooksService,
+              private _snack: MatSnackBar,
               public dialog: MatDialog){
 
   }
 
-  ELEMENT_DATA: any[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  ];
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  displayedColumnsEditora: string[] = ['id', 'nome', 'actions'];
-  dataSource = this.ELEMENT_DATA;
-
   editoras: any;
   dataSourceEditora: any;
+  displayedColumnsEditora: string[] = ['id', 'nome', 'actions'];
+
+  autores: any;
+  dataSourceAutores: any;
+  displayedColumnsAutores: string[] = ['id', 'nome', 'actions'];
 
   async ngOnInit(){
-    await this.getEditoras();
+
+    this.editoras = await this._manageService.getEditoras();
     this.dataSourceEditora = new MatTableDataSource(this.editoras);
-    this.dataSourceEditora.paginator = this.paginator;
+    this.dataSourceEditora.paginator = this.paginatorEditora;
+
+    this.autores = await this._manageService.getAutores();
+    this.dataSourceAutores = new MatTableDataSource(this.autores);
+    this.dataSourceAutores.paginator = this.paginatorAutor;   
   }
 
   async getEditoras(){
     this.editoras = await this._manageService.getEditoras();
+    this.dataSourceEditora.data = this.editoras;
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ModalManagerComponent, {
+  async getAutores(){
+    this.autores = await this._manageService.getAutores();
+    this.dataSourceAutores.data = this.autores;
+  }
 
+  async openDialogEditora(action:any, data:any) {
+    const dialogRef = this.dialog.open(ModalManageEditoraComponent, {
+      disableClose: true,
+      data: {
+        action: action,
+        data: data,
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+      if(result){
+        const formData = {
+          nome: result.nome
+        }
+        switch(action){
+          case 'create':
+            this._manageService.addEditora(formData).then( (success:any) =>{
+              if(success)
+                this.getEditoras();
+            });
+            break;
+          case 'update':
+            this._manageService.editEditora(result.id, formData).then( (success:any) =>{
+              if(success)
+                this.getEditoras();
+            });
+            break;
+          case 'delete':
+            this._manageService.deleteEditora(data.id).then( (success:any) =>{
+              if(success)
+                this.getEditoras();
+            });
+            break;
+          default:
+            this._snack.open('Ocorreu um erro na transferência dos dados. Tente novamente', 'OK');
+            break;
+        }
+      }
     });
+  }
+
+  async openDialogAutor(action:any, data:any) {
+
   }
 
 }
