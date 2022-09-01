@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIService } from '../../services/api.service';
+import { APIService } from '../../../services/api.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
 
-export class ManageBooksService {
+export class EditorasService {
 
     constructor(private _snack: MatSnackBar,
                 private _apiService: APIService) {}
-
-    getLivros(){
-
-    }
-
     //EDITORAS
     getEditoras() : Promise<any> {
         return new Promise((resolve, reject) =>{
@@ -36,7 +31,7 @@ export class ManageBooksService {
                 if(resp.success){
                     this._snack.open('Editora adicionada com sucesso!', '', {
                         duration: 2000,
-                      });
+                    });
                     resolve(resp.data);
                 }
                     
@@ -55,7 +50,7 @@ export class ManageBooksService {
                 if(resp.success){
                     this._snack.open('Editora editada com sucesso!', '', {
                         duration: 2000,
-                      });
+                    });
                     resolve(resp.data);
                 }
                 else{
@@ -73,7 +68,7 @@ export class ManageBooksService {
                 if(resp.success){
                     this._snack.open('Editora deletada com sucesso!', '', {
                         duration: 2000,
-                      });
+                    });
                     resolve(resp.data);
                 }
                 else{
@@ -84,20 +79,4 @@ export class ManageBooksService {
             });
         });
     }
-
-    //AUTORES
-    getAutores() : Promise<any> {
-        return new Promise((resolve, reject) =>{
-            this._apiService.getAll(environment.get_allAutores).then((resp:any) =>{
-                if(resp.success)
-                    resolve(resp.data);
-                else{
-                    this._snack.open('Ocorreu algum erro ao acessar os Autores, por favor contate o administrador', 'OK');
-                    reject();
-                }
-                    
-            });
-        });
-    }
-
 }

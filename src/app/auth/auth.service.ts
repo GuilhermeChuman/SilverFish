@@ -32,7 +32,7 @@ export class AuthService {
     }
 
     public isAdm(){
-        return this.tokenService.decodeRole(localStorage.getItem('userData')?.toString(), 'A');
+        return this.tokenService.decodeRole(localStorage.getItem('userData')?.toString()) == 'A';
     }
 
     public logout(){

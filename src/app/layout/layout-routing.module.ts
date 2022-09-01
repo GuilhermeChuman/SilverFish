@@ -17,26 +17,7 @@ const routes: Routes = [
   {
     path: '',
     component: HeaderSideComponent,
-    canActivate: [AuthGuardService],
-    children: [
-      { 
-        path: 'pages/home', 
-        loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
-      },
-      { 
-        path: 'pages/books', 
-        loadChildren: () => import('../pages/livros/livros.module').then(m => m.LivrosModule)
-      },   
-      { 
-        path: 'pages/profile', 
-        loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
-      },      
-    ]
-  },
-  {
-    path: '',
-    component: HeaderSideComponent,
-    canActivate: [AuthGuardService, RoleGuardService],
+    canActivate: [RoleGuardService, AuthGuardService],
     children: [
       { 
         path: 'pages/dashboard', 
@@ -51,6 +32,25 @@ const routes: Routes = [
         loadChildren: () => import('../pages/manageBooks/manageBooks.module').then(m => m.ManageBooksModule)
       },
       
+    ]
+  },
+  {
+    path: '',
+    component: HeaderSideComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      { 
+        path: 'pages/home', 
+        loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule)
+      },
+      { 
+        path: 'pages/books', 
+        loadChildren: () => import('../pages/livros/livros.module').then(m => m.LivrosModule)
+      },   
+      { 
+        path: 'pages/profile', 
+        loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
+      },      
     ]
   },
   {

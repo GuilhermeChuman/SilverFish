@@ -38,21 +38,21 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <a class="menuItem" routerLink="/pages/loan">
+            <a class="menuItem" routerLink="/pages/loan" *ngIf="role == 'A'">
               <div class="menuItem subMenu" fxLayout="row">
                 <mat-icon>table_chart</mat-icon>
                 <p>Empréstimos</p>
               </div>
             </a>
 
-            <a class="menuItem" routerLink="/pages/manageBooks">
+            <a class="menuItem" routerLink="/pages/manageBooks" *ngIf="role == 'A'">
               <div class="menuItem subMenu" fxLayout="row">
                 <mat-icon>local_library</mat-icon>
                 <p>Cadastro de Livros</p>
               </div>
             </a>
 
-            <a class="menuItem" routerLink="/pages/dashboard">
+            <a class="menuItem" routerLink="/pages/dashboard" *ngIf="role == 'A'">
               <div class="menuItem subMenu" fxLayout="row">
                 <mat-icon>dashboard</mat-icon>
                 <p>Dashboard</p>

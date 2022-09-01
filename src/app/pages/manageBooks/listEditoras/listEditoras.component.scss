@@ -1,0 +1,29 @@
+.tableButton{
+    padding-right: 10px;
+    min-width: 0px;
+    padding-left: 10px;
+}
+
+table{
+    width: 100%;
+    padding-top: 5px;
+}
+
+.centerColumn{
+    justify-content: center;
+}
+
+.buttons{
+
+    margin-top: 10px;
+
+    .add{
+        background-color: #7ba0e6;
+        color: white;
+        margin-right: 5px;
+    }
+}
+
+::ng-deep .mat-simple-snackbar-action {
+    color: lightgray;
+}

@@ -14,8 +14,9 @@ export class RoleGuardService implements CanActivate, CanActivateChild {
       return true; 
     }
 
+    this.router.navigate(['/pages/home']);
     this._snack.open('Você não possui privilégios para acessar essa tela', 'OK');
-	return false;
+    return false;
 
   }
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

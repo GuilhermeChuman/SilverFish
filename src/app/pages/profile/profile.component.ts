@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Chart, registerables } from 'chart.js';
+import { JWTService } from 'src/app/auth/jwt.service';
 Chart.register(...registerables);
 
 @Component({
@@ -9,10 +10,13 @@ Chart.register(...registerables);
   styleUrls: ['./profile.component.scss']
 })
 
-export class ProfileComponent implements OnInit, AfterViewInit{
+export class ProfileComponent implements OnInit, AfterContentInit{
 
-  constructor() { }
-  
+  constructor(private _jwtSerice: JWTService) { }
+
+  userData: any;
+  nome: any = '';
+
   canvas: any;
   ctx: any;
 
@@ -30,7 +34,10 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  async ngAfterViewInit(){
+  async ngAfterContentInit(){
+
+    this.userData = this._jwtSerice.decodeData(localStorage.getItem('userData'));
+    this.nome = this.userData.nome;
 
     await this.delay(500);
 

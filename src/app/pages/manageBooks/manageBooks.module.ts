@@ -22,14 +22,26 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { ManageBooksComponent } from './manageBooks.component';
-import { ManageBooksService } from './manageBooks.service';
 import { ModalManageEditoraComponent } from './manager/modalManageEditora/modalManageEditora.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ListEditorasComponent } from './listEditoras/listEditoras.component';
+import { ListAutoresComponent } from './listAutores/listAutores.component';
+import { EditorasService } from './listEditoras/editoras.service';
+import { AutoresService } from './listAutores/autores.service';
+import { LivrosService } from './listLivros/livros.service';
+import { ListLivrosComponent } from './listLivros/listLivros.component';
+import { ModalAutorComponent } from './manager/modalManageAutores/modalAutor.component';
 
 @NgModule({
     declarations: [
       ManageBooksComponent,
-      ModalManageEditoraComponent
+
+      ModalManageEditoraComponent,
+      ModalAutorComponent,
+
+      ListEditorasComponent,
+      ListAutoresComponent,
+      ListLivrosComponent
     ],
     imports: [
       ManageBooksRoutingModule,
@@ -56,7 +68,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       CommonModule
       
     ],
-    providers: [ManageBooksService, MatDialog],
+    providers: [EditorasService, AutoresService, MatDialog, LivrosService],
     bootstrap: []
   })
   export class ManageBooksModule { }

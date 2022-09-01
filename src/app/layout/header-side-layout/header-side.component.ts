@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { JWTService } from 'src/app/auth/jwt.service';
 
 @Component({
   selector: 'app-header-side',
@@ -9,8 +10,10 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderSideComponent implements OnInit {
 
-  constructor(private router: Router, private _authService: AuthService,) {
+  role: any;
 
+  constructor(private router: Router, private _authService: AuthService, private _JWTService: JWTService) {
+    this.role = _JWTService.decodeRole(localStorage.getItem('userData'));
   }
 
   ngOnInit() {

@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _authService: AuthService,
               private router: Router,
-              private _snack: MatSnackBar) {
-  }
+              private _snack: MatSnackBar) { }
 
   loginForm = new FormGroup({
     login: new FormControl('',Validators.required),
@@ -23,6 +22,8 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if(this._authService.isLogged())
+      this.router.navigate(['/pages/home']);
   }
 
   async login(data:FormGroup){

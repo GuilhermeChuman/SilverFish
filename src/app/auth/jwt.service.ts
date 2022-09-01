@@ -33,10 +33,39 @@ export class JWTService {
 
     }
 
-    decodeRole(token:any, role:any){
+    decodeData(token:any){
+
+        let response: any;
+
+        if(token){
+
+            let data = token.split('.');
+
+            let bytes = CryptoJS.AES.decrypt(data[0], 'IDKFA');
+            let tokenData = bytes.toString(CryptoJS.enc.Utf8);
+    
+            let dataArray = tokenData.split(';');
+    
+            response = {
+                id: dataArray[0],
+                login: dataArray[1],
+                nome: dataArray[2],
+                password: dataArray[3],
+                status: dataArray[4]
+            }
+
+            return response;
+    
+        }
+        else
+            return response;
+
+    }
+
+    decodeRole(token:any){
 
         if(!token)
-            return false;
+            return 'not found';
 
         let data = token.split('.');
 
@@ -45,7 +74,7 @@ export class JWTService {
 
         let roleArray = tokenData.split(';');
 
-        return (roleArray[4] == role);
+        return roleArray[4];
 
     }
 
