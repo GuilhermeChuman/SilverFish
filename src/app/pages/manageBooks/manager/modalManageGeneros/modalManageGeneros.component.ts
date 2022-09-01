@@ -31,14 +31,16 @@ export class ModalManageGenerosComponent implements OnInit{
       case 'create':
         this.title = 'Novo Gênero';
         this.generosForm = new FormGroup({
-          nome: new FormControl('',Validators.required)
+          nome: new FormControl('',Validators.required),
+          descricao: new FormControl('',Validators.required),
         });
         break;
       case 'update':
         this.title = 'Atualizar Gênero';
         this.generosForm = new FormGroup({
           id: new FormControl(this.data.id,Validators.required),
-          nome: new FormControl(this.data.nome,Validators.required)
+          nome: new FormControl(this.data.nome,Validators.required),
+          descricao: new FormControl(this.data.descricao,Validators.required),
         });
         break;
       case 'delete':

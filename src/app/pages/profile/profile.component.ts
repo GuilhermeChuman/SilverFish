@@ -54,17 +54,17 @@ export class ProfileComponent implements OnInit, AfterContentInit{
         type: 'doughnut',
         data: {
           labels: [
-            'Red',
-            'Blue',
-            'Yellow'
+            'Lendo',
+            'Lido',
+            'À Ler'
           ],
           datasets: [{
             label: 'My First Dataset',
             data: [300, 50, 100],
             backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
+              '#3d79e7',
+              '#3de768',
+              '#e8f34b'
             ],
             hoverOffset: 4
           }]
@@ -94,21 +94,24 @@ export class ProfileComponent implements OnInit, AfterContentInit{
       type: 'line',
       data: {
         labels: [
-          'Red',
-          'Blue',
-          'Yellow'
+          'JUN',
+          'JUL',
+          'AGO'
         ],
         datasets: [{
           label: 'My First Dataset',
           data: [100, 150, 200],
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#3d79e7'
           ]
         }]
       },
       options: {
+        elements:{
+          line:{
+            borderColor: '#3d79e7'
+          }
+        },
         responsive: true,
         plugins: {
           title:{

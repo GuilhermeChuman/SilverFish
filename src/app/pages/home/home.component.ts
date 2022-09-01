@@ -10,5 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class HomeComponent {
 
   //@ViewChild('sidenav') sidenav: MatSidenav;
+  fontesCapa = '../../../assets/img/';
+  endpointCapa = 'BookRed.png';
 
 }

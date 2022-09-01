@@ -1,6 +1,5 @@
 ::ng-deep.mat-dialog-container {
     padding: 0px;
-    width: 70vw;  
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -15,11 +14,15 @@
     margin-bottom: 0px;
 }
 
+.modal{
+    width: 70vw;
+}
+
 .content{
 
     padding: 20px;
     padding-top: 20px;
-    height: 70vh;
+    max-height: 70vh;
     overflow: auto;
 
     mat-form-field{

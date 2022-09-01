@@ -1,6 +1,15 @@
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as CryptoJS from 'crypto-js';
 
+@Injectable()
+
 export class JWTService {
+
+    constructor(private _snack: MatSnackBar){
+
+    }
+    
 
     tokeninze(data: any){
         let now = new Date().toString();
@@ -29,8 +38,16 @@ export class JWTService {
 
         let time = (new Date().getTime() - new Date(tokenDate).getTime())/(1000 * 60);
 
-        return (time < 30);
-
+        if(time < 30){
+            return true;
+        }
+        else{
+            this._snack.open('Sua sessão expirou, por favor entre novamente.', '', {
+                duration: 2000,
+            });
+            localStorage.removeItem('userData');
+            return false;
+        }
     }
 
     decodeData(token:any){

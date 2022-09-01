@@ -48,17 +48,17 @@ export class ModalManageLivrosComponent implements OnInit{
         this.title = 'Atualizar Livro';
         this.livrosForm = new FormGroup({
           id: new FormControl(this.data.id,Validators.required),
-          isbn: new FormControl('',Validators.required),
-          titulo: new FormControl('',Validators.required),
-          descricao: new FormControl(''),
-          volume: new FormControl(''),
-          palavraChave1: new FormControl(''),
-          palavraChave2: new FormControl(''),
-          palavraChave3: new FormControl(''),
-          ano: new FormControl(''),
-          edicao: new FormControl(''),
-          idEditora: new FormControl(''),
-          idGenero: new FormControl('')
+          isbn: new FormControl(this.data.isbn,Validators.required),
+          titulo: new FormControl(this.data.titulo,Validators.required),
+          descricao: new FormControl(this.data.descricao),
+          volume: new FormControl(this.data.volume),
+          palavraChave1: new FormControl(this.data.palavraChave1),
+          palavraChave2: new FormControl(this.data.palavraChave2),
+          palavraChave3: new FormControl(this.data.palavraChave3),
+          ano: new FormControl(this.data.ano),
+          edicao: new FormControl(this.data.edicao),
+          idEditora: new FormControl(this.data.idEditora),
+          idGenero: new FormControl(this.data.idGenero)
         });
         break;
       case 'delete':

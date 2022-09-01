@@ -1,6 +1,5 @@
 ::ng-deep.mat-dialog-container {
-    padding: 0px;
-    width: 50vw;
+    padding: 0px; 
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -11,9 +10,15 @@
     color: lightgray;
 }
 
+.modal{
+    width: 50vw;
+}
+
 .content{
     padding: 20px;
     padding-top: 0px;
+    max-height: 70vh;
+    overflow: auto;
 
     h3{
         text-align: center;
@@ -40,6 +45,27 @@
         border-color: #7ba0e6;
         margin-right: 5px;
     }
+}
+
+//SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background:none; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #d1d1d1; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b1b1b1; 
 }
 
 

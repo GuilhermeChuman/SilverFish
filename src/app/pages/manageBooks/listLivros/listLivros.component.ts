@@ -52,18 +52,16 @@ export class ListLivrosComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        const formData = {
-          nome: result.nome
-        }
+        delete result.id;
         switch(action){
           case 'create':
-            this._manageService.addLivro(formData).then( (success:any) =>{
+            this._manageService.addLivro(result).then( (success:any) =>{
               if(success)
                 this.getLivros();
             });
             break;
           case 'update':
-            this._manageService.editLivro(result.id, formData).then( (success:any) =>{
+            this._manageService.editLivro(data.id, result).then( (success:any) =>{
               if(success)
                 this.getLivros();
             });

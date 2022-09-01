@@ -58,18 +58,16 @@ export class ListAutoresComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        const formData = {
-          nome: result.nome
-        }
+        delete result.id;
         switch(action){
           case 'create':
-            this._manageService.addAutor(formData).then( (success:any) =>{
+            this._manageService.addAutor(result).then( (success:any) =>{
               if(success)
                 this.getAutores();
             });
             break;
           case 'update':
-            this._manageService.editAutor(result.id, formData).then( (success:any) =>{
+            this._manageService.editAutor(data.id, result).then( (success:any) =>{
               if(success)
                 this.getAutores();
             });

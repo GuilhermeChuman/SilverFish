@@ -1,34 +1,40 @@
-<h1 class="modal-title" mat-dialog-title>
-  {{title}}
-</h1>
-<div *ngIf="action != 'delete'" class="content">
+<div class="modal">
+  <h1 class="modal-title" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    {{title}}
+    <a class="cancelIcon" mat-button form="none" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </h1>
+  <div *ngIf="action != 'delete'" class="content">
+    
+    <form class="auth" fxLayout="column" [formGroup]="editorasForm">
   
-  <form class="auth" fxLayout="column" [formGroup]="editorasForm">
-
-    <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput required formControlName="nome">
-        <mat-error>Nome é obrigatório</mat-error>
-    </mat-form-field> 
-
-    <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
-      <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
-      <button class="confirm" mat-raised-button (click)="submit()">Salvar</button>
-    </div>
-
-  </form>
-
+      <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput required formControlName="nome">
+          <mat-error>Nome é obrigatório</mat-error>
+      </mat-form-field> 
+  
+      <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+        <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
+        <button class="confirm" mat-raised-button (click)="submit()">Salvar</button>
+      </div>
+  
+    </form>
+  
+  </div>
+  
+  <div *ngIf="action == 'delete'" class="content">
+    
+    <h3>Tem certeza que deseja deletar a editora {{data.nome}} ?</h3>
+  
+      <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+        <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
+        <button class="confirm" mat-raised-button (click)="delete()">Salvar</button>
+      </div>
+  
+  </div>
 </div>
 
-<div *ngIf="action == 'delete'" class="content">
-  
-  <h3>Tem certeza que deseja deletar a editora {{data.nome}} ?</h3>
-
-    <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
-      <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
-      <button class="confirm" mat-raised-button (click)="delete()">Salvar</button>
-    </div>
-
-</div>
     
 

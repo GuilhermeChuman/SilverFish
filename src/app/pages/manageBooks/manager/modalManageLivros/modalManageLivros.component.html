@@ -1,7 +1,10 @@
 <div class="modal">
 
-  <h1 class="modal-title" mat-dialog-title>
+  <h1 class="modal-title" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
     {{title}}
+    <a class="cancelIcon" mat-button form="none" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
   </h1>
   
   <div *ngIf="action != 'delete'" class="content">

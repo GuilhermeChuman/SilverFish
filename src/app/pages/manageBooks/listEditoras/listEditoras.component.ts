@@ -57,18 +57,16 @@ export class ListEditorasComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        const formData = {
-          nome: result.nome
-        }
+        delete result.id;
         switch(action){
           case 'create':
-            this._manageService.addEditora(formData).then( (success:any) =>{
+            this._manageService.addEditora(result).then( (success:any) =>{
               if(success)
                 this.getEditoras();
             });
             break;
           case 'update':
-            this._manageService.editEditora(result.id, formData).then( (success:any) =>{
+            this._manageService.editEditora(data.id, result).then( (success:any) =>{
               if(success)
                 this.getEditoras();
             });

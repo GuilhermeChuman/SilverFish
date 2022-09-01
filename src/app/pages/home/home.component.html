@@ -2,25 +2,39 @@
     <h1>Recomendações para você</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
+        <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+            <img src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip class="chipLido">Lido</mat-chip>
+            </mat-chip-list>
+            <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </a> 
+        <a href="" class="capa" matTooltip="Nome do livro BEBE">
+            <img src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip class="chipLendo">Lendo</mat-chip>
+            </mat-chip-list>
+            <p>Nome do livro BEBE</p>
+        </a> 
+        <a href="">
+            <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        </a> 
     </div>
 
     <h1>Você está lendo</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
     </div>
 
     <h1>Últimos livros</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
-        <img class="capa" src="img_girl.jpg" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
     </div>
 
     <div class="footer"></div>

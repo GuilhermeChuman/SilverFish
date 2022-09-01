@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { rowsAnimation } from 'src/app/animations/table.animations';
-import { ModalManageEditoraComponent } from '../manager/modalManageEditora/modalManageEditora.component';
+import { ModalManageGenerosComponent } from '../manager/modalManageGeneros/modalManageGeneros.component';
 import { GenerosService } from './generos.service';
 
 
@@ -46,7 +46,7 @@ export class ListGenerosComponent implements OnInit{
   }
 
   async openDialogGenero(action:any, data:any) {
-    const dialogRef = this.dialog.open(ModalManageEditoraComponent, {
+    const dialogRef = this.dialog.open(ModalManageGenerosComponent, {
       disableClose: true,
       data: {
         action: action,
@@ -56,18 +56,16 @@ export class ListGenerosComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        const formData = {
-          nome: result.nome
-        }
+        delete result.id;
         switch(action){
           case 'create':
-            this._manageService.addGenero(formData).then( (success:any) =>{
+            this._manageService.addGenero(result).then( (success:any) =>{
               if(success)
                 this.getGeneros();
             });
             break;
           case 'update':
-            this._manageService.editGenero(result.id, formData).then( (success:any) =>{
+            this._manageService.editGenero(data.id, result).then( (success:any) =>{
               if(success)
                 this.getGeneros();
             });

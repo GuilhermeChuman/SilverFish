@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { HomeComponent } from './home.component';
 
@@ -39,6 +41,8 @@ import { HomeComponent } from './home.component';
       MatSnackBarModule,
       MatDividerModule,
       MatProgressSpinnerModule,
+      MatTooltipModule,
+      MatChipsModule
     ],
     providers: [],
     bootstrap: []
