@@ -1,0 +1,44 @@
+<mat-table  [dataSource]="dataSourceGenero" matSort 
+            (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef fxFlex="20" mat-sort-header> Id </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="20"> {{element.id}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef fxFlex="50" mat-sort-header> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="50"> {{element.nome}} </mat-cell>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell class="centerColumn" *matHeaderCellDef fxFlex="30" fxLayoutAlign="center center"> Ações </mat-header-cell>
+    <mat-cell class="centerColumn" *matCellDef="let element" fxFlex="30" fxLayoutAlign="center center">
+      
+      <button class="tableButton" (click)="openDialogGenero('update', element)" mat-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button class="tableButton" (click)="openDialogGenero('delete', element)" mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </mat-cell>
+  </ng-container>
+        
+  <mat-header-row @rowsAnimation *matHeaderRowDef="displayedColumnsGenero"></mat-header-row>
+  <mat-row @rowsAnimation *matRowDef="let row; columns: displayedColumnsGenero;"></mat-row>
+</mat-table>
+
+<mat-paginator  [pageSizeOptions]="[5, 10]"
+                showFirstLastButtons >
+</mat-paginator>
+
+<div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+  <button class="add" (click)="openDialogGenero('create', null)" mat-raised-button>
+    Adicionar nova editora
+  </button>
+</div>

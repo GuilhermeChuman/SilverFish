@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { APIService } from '../../../services/api.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
 
-export class LivrosService {
+export class GenerosService {
 
     constructor(private _snack: MatSnackBar,
                 private _apiService: APIService) {}
-
-    //AUTORES
-    getLivros() : Promise<any> {
+    //GeneroS
+    getGeneros() : Promise<any> {
         return new Promise((resolve, reject) =>{
-            this._apiService.getAll(environment.get_allLivros).then((resp:any) =>{
+            this._apiService.getAll(environment.get_allGeneros).then((resp:any) =>{
                 if(resp.success)
                     resolve(resp.data);
                 else{
-                    this._snack.open('Ocorreu algum erro ao acessar os Livros, por favor contate o administrador', 'OK');
+                    this._snack.open('Ocorreu algum erro ao acessar as Generos, por favor contate o administrador', 'OK');
                     reject();
                 }
                     
@@ -26,18 +24,18 @@ export class LivrosService {
         });
     }
 
-    addLivro(data:any) : Promise<any> {
+    addGenero(data:any) : Promise<any> {
         return new Promise((resolve, reject) =>{
-            this._apiService.add(environment.add_livro, data).then((resp:any) =>{
+            this._apiService.add(environment.add_genero, data).then((resp:any) =>{
                 if(resp.success){
-                    this._snack.open('Livro adicionado com sucesso!', '', {
+                    this._snack.open('Genero adicionada com sucesso!', '', {
                         duration: 2000,
                     });
                     resolve(resp.data);
                 }
                     
                 else{
-                    this._snack.open('Ocorreu algum erro ao adicionar um Livro, por favor contate o administrador', 'OK');
+                    this._snack.open('Ocorreu algum erro ao adicionar uma Genero, por favor contate o administrador', 'OK');
                     reject();
                 }
                     
@@ -45,17 +43,17 @@ export class LivrosService {
         });
     }
 
-    editLivro(id:any, data:any) : Promise<any> {
+    editGenero(id:any, data:any) : Promise<any> {
         return new Promise((resolve, reject) =>{
-            this._apiService.edit(environment.edit_livro, id, data).then((resp:any) =>{
+            this._apiService.edit(environment.edit_genero, id, data).then((resp:any) =>{
                 if(resp.success){
-                    this._snack.open('Livro editado com sucesso!', '', {
+                    this._snack.open('Genero editada com sucesso!', '', {
                         duration: 2000,
                     });
                     resolve(resp.data);
                 }
                 else{
-                    this._snack.open('Ocorreu algum erro ao editar o Livro selecionado, por favor contate o administrador', 'OK');
+                    this._snack.open('Ocorreu algum erro ao editar o Genero selecionado, por favor contate o administrador', 'OK');
                     reject();
                 }
                     
@@ -63,22 +61,21 @@ export class LivrosService {
         });
     }
 
-    deleteLivro(id:any) : Promise<any> {
+    deleteGenero(id:any) : Promise<any> {
         return new Promise((resolve, reject) =>{
-            this._apiService.delete(environment.delete_livro, id).then((resp:any) =>{
+            this._apiService.delete(environment.delete_genero, id).then((resp:any) =>{
                 if(resp.success){
-                    this._snack.open('Livro deletado com sucesso!', '', {
+                    this._snack.open('Genero deletada com sucesso!', '', {
                         duration: 2000,
                     });
                     resolve(resp.data);
                 }
                 else{
-                    this._snack.open('Ocorreu algum erro ao deletar o Livro selecionado, por favor contate o administrador', 'OK');
+                    this._snack.open('Ocorreu algum erro ao deletar o Genero selecionado, por favor contate o administrador', 'OK');
                     reject();
                 }
                     
             });
         });
     }
-
 }

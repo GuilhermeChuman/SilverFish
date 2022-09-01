@@ -27,4 +27,9 @@ export const environment = {
   edit_autor: '/editAutor/',
   delete_autor: '/deleteAutor/',
 
+  get_allGeneros: '/generos',
+  add_genero: '/addGenero',
+  edit_genero: '/editGenero/',
+  delete_genero: '/deleteGenero/',
+
 };

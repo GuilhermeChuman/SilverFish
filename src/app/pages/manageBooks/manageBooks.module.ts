@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatListModule } from '@angular/material/list';
 
 import { ManageBooksComponent } from './manageBooks.component';
 import { ModalManageEditoraComponent } from './manager/modalManageEditora/modalManageEditora.component';
@@ -31,6 +33,10 @@ import { AutoresService } from './listAutores/autores.service';
 import { LivrosService } from './listLivros/livros.service';
 import { ListLivrosComponent } from './listLivros/listLivros.component';
 import { ModalAutorComponent } from './manager/modalManageAutores/modalAutor.component';
+import { ModalManageLivrosComponent } from './manager/modalManageLivros/modalManageLivros.component';
+import { ModalManageGenerosComponent } from './manager/modalManageGeneros/modalManageGeneros.component';
+import { ListGenerosComponent } from './listGeneros/listGeneros.component';
+import { GenerosService } from './listGeneros/generos.service';
 
 @NgModule({
     declarations: [
@@ -38,10 +44,13 @@ import { ModalAutorComponent } from './manager/modalManageAutores/modalAutor.com
 
       ModalManageEditoraComponent,
       ModalAutorComponent,
+      ModalManageLivrosComponent,
+      ModalManageGenerosComponent,
 
       ListEditorasComponent,
       ListAutoresComponent,
-      ListLivrosComponent
+      ListLivrosComponent,
+      ListGenerosComponent
     ],
     imports: [
       ManageBooksRoutingModule,
@@ -65,10 +74,12 @@ import { ModalAutorComponent } from './manager/modalManageAutores/modalAutor.com
       MatPaginatorModule,
       MatSortModule,
       MatDialogModule,
-      CommonModule
+      CommonModule,
+      ScrollingModule,
+      MatListModule
       
     ],
-    providers: [EditorasService, AutoresService, MatDialog, LivrosService],
+    providers: [EditorasService, AutoresService, MatDialog, LivrosService, GenerosService],
     bootstrap: []
   })
   export class ManageBooksModule { }
