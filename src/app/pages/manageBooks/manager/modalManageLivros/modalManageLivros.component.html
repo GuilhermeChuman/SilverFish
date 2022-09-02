@@ -89,16 +89,17 @@
 
         <div fxLayout="column">
           <mat-list role="list">
-            <mat-list-item role="listitem">
-
-              Item 1
+            <mat-list-item role="listitem" *ngFor="let autor of autores">
+              {{autor.nome}}
               <button class="tableButton" form="none" mat-button>
                   <mat-icon>delete</mat-icon>
               </button>
               
             </mat-list-item>
           </mat-list>
-          <button class="addButton" mat-raised-button form="none">Adicionar um autor</button>
+          <button class="addButton" mat-raised-button form="none" (click)="openDialogLivro('create', null)">
+            Adicionar um autor
+          </button>
         </div>
     
         <div class="buttons" fxLayout="row" fxLayoutAlign="end center">

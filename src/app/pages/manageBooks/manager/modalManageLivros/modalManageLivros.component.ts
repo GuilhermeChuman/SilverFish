@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LivrosService } from '../../listLivros/livros.service';
+import { ModalSelectAutoresComponent } from './modalSelectAutores/modalSelectAutores.component';
 
 
 @Component({
@@ -15,13 +18,16 @@ export class ModalManageLivrosComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
-  constructor(
-    public dialogRef: MatDialogRef<ModalManageLivrosComponent>,
-    @Inject(MAT_DIALOG_DATA) public _data: any,
+  constructor(  public dialog: MatDialog,
+                private _manageService: LivrosService,
+                private _snack: MatSnackBar,
+                public dialogRef: MatDialogRef<ModalManageLivrosComponent>,
+                @Inject(MAT_DIALOG_DATA) public _data: any,
   ){ }
 
   data = this._data.data;
   action = this._data.action;
+  autores: any[] = [];
   title = '';
 
   livrosForm: any;
@@ -60,6 +66,7 @@ export class ModalManageLivrosComponent implements OnInit{
           idEditora: new FormControl(this.data.idEditora),
           idGenero: new FormControl(this.data.idGenero)
         });
+        this.getAutores();
         break;
       case 'delete':
         this.title = 'Excluir Livro';
@@ -68,6 +75,38 @@ export class ModalManageLivrosComponent implements OnInit{
         this.title = 'Ação não encontrada!';
         break;
     }
+  }
+
+  async openDialogLivro(action:any, data:any) {
+    const dialogRef = this.dialog.open(ModalSelectAutoresComponent, {
+      disableClose: true,
+      data: {
+        action: action,
+        data: data,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        switch(action){
+          case 'create':
+            this._manageService.addTrabalho(result).then( (success:any) =>{
+              if(success)
+                this.getAutores();
+            });
+            break;
+          case 'delete':
+            this._manageService.deleteTrabalho(data.id).then( (success:any) =>{
+              if(success)
+                this.getAutores();
+            });
+            break;
+          default:
+            this._snack.open('Ocorreu um erro na transferência dos dados. Tente novamente', 'OK');
+            break;
+        }
+      }
+    });
   }
 
   close(){
@@ -81,6 +120,12 @@ export class ModalManageLivrosComponent implements OnInit{
 
   delete(){
     this.dialogRef.close(true);
+  }
+
+  async getAutores(){
+    await this._manageService.getAutoresByLivro(this.data.id).then( (resp:any) =>{
+      this.autores = resp;
+    });
   }
 
 }

@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ManageBooksComponent } from './manageBooks.component';
 import { ModalManageEditoraComponent } from './manager/modalManageEditora/modalManageEditora.component';
@@ -37,6 +38,7 @@ import { ModalManageLivrosComponent } from './manager/modalManageLivros/modalMan
 import { ModalManageGenerosComponent } from './manager/modalManageGeneros/modalManageGeneros.component';
 import { ListGenerosComponent } from './listGeneros/listGeneros.component';
 import { GenerosService } from './listGeneros/generos.service';
+import { ModalSelectAutoresComponent } from './manager/modalManageLivros/modalSelectAutores/modalSelectAutores.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +48,7 @@ import { GenerosService } from './listGeneros/generos.service';
       ModalAutorComponent,
       ModalManageLivrosComponent,
       ModalManageGenerosComponent,
+      ModalSelectAutoresComponent,
 
       ListEditorasComponent,
       ListAutoresComponent,
@@ -76,7 +79,8 @@ import { GenerosService } from './listGeneros/generos.service';
       MatDialogModule,
       CommonModule,
       ScrollingModule,
-      MatListModule
+      MatListModule,
+      MatSelectModule,
       
     ],
     providers: [EditorasService, AutoresService, MatDialog, LivrosService, GenerosService],

@@ -1,0 +1,93 @@
+::ng-deep.mat-dialog-container {
+    padding: 0px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #7ba0e6;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+    color: lightgray;
+}
+
+.modal-title{
+    margin-bottom: 0px;
+}
+
+.modal{
+    width: 40vw;
+}
+
+.content{
+
+    padding: 20px;
+    padding-top: 20px;
+    max-height: 70vh;
+    overflow: auto;
+
+    mat-form-field{
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    h3{
+        text-align: center;
+        font-weight: normal;
+    }
+}
+
+.tableButton{
+    padding-right: 10px;
+    min-width: 0px;
+    padding-left: 10px;
+}
+
+.modal-title{
+    padding: 10px;
+    background-color: #7ba0e6;
+    color: white;
+}
+
+.addButton{
+    background-color: #7ba0e6;
+    color: white;
+    margin: 5px; 
+    width: 200px;
+}
+
+.confirm{
+    background-color: #7ba0e6;
+    color: white;
+    margin-left: 5px;
+}
+
+.cancel{
+    color:#7ba0e6;
+    border-color: #7ba0e6;
+    margin-right: 5px;
+}
+
+
+
+//SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background:none; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #d1d1d1; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b1b1b1; 
+}
+
+

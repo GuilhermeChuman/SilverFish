@@ -16,6 +16,9 @@ export const environment = {
   add_livro: '/addLivro',
   edit_livro: '/editLivro/',
   delete_livro: '/deleteLivro/',
+  get_autores_byLivro: '/autoresByLivro/',
+  add_trabalho: '/addTrabalho',
+  remove_trabalho: '/removeTrabalho/',
 
   get_allEditoras: '/editoras',
   add_editora: '/addEditora',
