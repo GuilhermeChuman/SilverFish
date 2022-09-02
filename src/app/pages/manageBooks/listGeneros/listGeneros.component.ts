@@ -20,8 +20,10 @@ import { GenerosService } from './generos.service';
 
 export class ListGenerosComponent implements OnInit{
 
-  @ViewChild(MatPaginator) paginatorEditora: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator)
+  paginatorGenero!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
   constructor(private _manageService: GenerosService,
               private _liveAnnouncer: LiveAnnouncer,
@@ -36,7 +38,11 @@ export class ListGenerosComponent implements OnInit{
 
     this.generos = await this._manageService.getGeneros();
     this.dataSourceGenero = new MatTableDataSource(this.generos);
-    this.dataSourceGenero.paginator = this.paginatorEditora;
+    this.paginatorGenero._intl.nextPageLabel = '';
+    this.paginatorGenero._intl.previousPageLabel = '';
+    this.paginatorGenero._intl.lastPageLabel = '';
+    this.paginatorGenero._intl.firstPageLabel = '';
+    this.dataSourceGenero.paginator = this.paginatorGenero;
 
   }
 

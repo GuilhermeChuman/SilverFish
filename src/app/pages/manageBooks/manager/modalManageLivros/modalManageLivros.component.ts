@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditorasService } from '../../listEditoras/editoras.service';
+import { GenerosService } from '../../listGeneros/generos.service';
 import { LivrosService } from '../../listLivros/livros.service';
 import { ModalSelectAutoresComponent } from './modalSelectAutores/modalSelectAutores.component';
 
@@ -20,6 +22,8 @@ export class ModalManageLivrosComponent implements OnInit{
 
   constructor(  public dialog: MatDialog,
                 private _manageService: LivrosService,
+                private _generoService: GenerosService,
+                private _editoraService: EditorasService,
                 private _snack: MatSnackBar,
                 public dialogRef: MatDialogRef<ModalManageLivrosComponent>,
                 @Inject(MAT_DIALOG_DATA) public _data: any,
@@ -32,22 +36,31 @@ export class ModalManageLivrosComponent implements OnInit{
 
   livrosForm: any;
 
+  generos: any[] = [];
+  editoras: any[] = [];
+
   async ngOnInit(){
+    this._generoService.getGeneros().then( (i:any) =>{
+      this.generos = i;
+    });
+    this._editoraService.getEditoras().then( (i:any) =>{
+      this.editoras = i;
+    });
     switch(this.action){
       case 'create':
         this.title = 'Novo Livro';
         this.livrosForm = new FormGroup({
-          isbn: new FormControl('',Validators.required),
-          titulo: new FormControl('',Validators.required),
-          descricao: new FormControl(''),
-          volume: new FormControl(''),
-          palavraChave1: new FormControl(''),
-          palavraChave2: new FormControl(''),
-          palavraChave3: new FormControl(''),
-          ano: new FormControl(''),
-          edicao: new FormControl(''),
-          idEditora: new FormControl(''),
-          idGenero: new FormControl('')
+          isbn: new FormControl(null,Validators.required),
+          titulo: new FormControl(null,Validators.required),
+          descricao: new FormControl(null),
+          volume: new FormControl(null),
+          palavraChave1: new FormControl(null),
+          palavraChave2: new FormControl(null),
+          palavraChave3: new FormControl(null),
+          ano: new FormControl(null),
+          edicao: new FormControl(null),
+          idEditora: new FormControl(null),
+          idGenero: new FormControl(null)
         });
         break;
       case 'update':
@@ -90,17 +103,36 @@ export class ModalManageLivrosComponent implements OnInit{
       if(result){
         switch(action){
           case 'create':
-            this._manageService.addTrabalho(result).then( (success:any) =>{
-              if(success)
-                this.getAutores();
-            });
+            if(this.action == 'create'){
+              const formData = {
+                id: result.id,
+                autor: result.nome
+              }
+              this.autores.push(formData);
+            }
+
+            else{
+              const formData = {
+                idLivro: this.data.id,
+                idAutor: result.id
+              }
+              this._manageService.addTrabalho(formData).then( (success:any) =>{
+                if(success)
+                  this.getAutores();
+              });
+            }
             break;
           case 'delete':
-            this._manageService.deleteTrabalho(data.id).then( (success:any) =>{
-              if(success)
-                this.getAutores();
-            });
+            if(this.action == 'create')
+              this.autores = this.autores.filter( item => item.id !== result.id);
+            else{
+              this._manageService.deleteTrabalho(data.id).then( (success:any) =>{
+                if(success)
+                  this.getAutores();
+              });
+            }
             break;
+
           default:
             this._snack.open('Ocorreu um erro na transferência dos dados. Tente novamente', 'OK');
             break;
@@ -115,7 +147,7 @@ export class ModalManageLivrosComponent implements OnInit{
 
   submit(){
     const formData = this.livrosForm?.getRawValue();
-    this.dialogRef.close(formData);
+    this.dialogRef.close([formData, this.autores]);
   }
 
   delete(){

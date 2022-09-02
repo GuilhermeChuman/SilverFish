@@ -20,7 +20,8 @@ import { LivrosService } from './livros.service';
 
 export class ListLivrosComponent implements OnInit{
 
-  @ViewChild(MatPaginator) paginatorLivros: MatPaginator | undefined;
+  @ViewChild(MatPaginator)
+  paginatorLivros!: MatPaginator;
 
   constructor(private _manageService: LivrosService,
               private _snack: MatSnackBar,
@@ -33,7 +34,12 @@ export class ListLivrosComponent implements OnInit{
   async ngOnInit(){
     this.livros = await this._manageService.getLivros();
     this.dataSourceLivros = new MatTableDataSource(this.livros);
+    this.paginatorLivros._intl.nextPageLabel = '';
+    this.paginatorLivros._intl.previousPageLabel = '';
+    this.paginatorLivros._intl.lastPageLabel = '';
+    this.paginatorLivros._intl.firstPageLabel = '';
     this.dataSourceLivros.paginator = this.paginatorLivros;
+
   }
 
   async getLivros(){
@@ -52,16 +58,25 @@ export class ListLivrosComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        delete result.id;
         switch(action){
           case 'create':
-            this._manageService.addLivro(result).then( (success:any) =>{
-              if(success)
+            delete result[0].id;
+            this._manageService.addLivro(result[0]).then( (success:any) =>{
+              if(success){
+                result[1].forEach((element:any) => {
+                  const formData = {
+                    idLivro: success.id,
+                    idAutor: element.id 
+                  };
+                  this._manageService.addTrabalho(formData);
+                });
                 this.getLivros();
+              }
             });
             break;
           case 'update':
-            this._manageService.editLivro(data.id, result).then( (success:any) =>{
+            delete result[0].id;
+            this._manageService.editLivro(data.id, result[0]).then( (success:any) =>{
               if(success)
                 this.getLivros();
             });

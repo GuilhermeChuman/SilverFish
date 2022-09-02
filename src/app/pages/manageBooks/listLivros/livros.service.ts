@@ -47,7 +47,7 @@ export class LivrosService {
 
     deleteTrabalho(id:any){
         return new Promise((resolve, reject) =>{
-            this._apiService.add(environment.remove_trabalho, id).then((resp:any) =>{
+            this._apiService.delete(environment.remove_trabalho, id).then((resp:any) =>{
                 if(resp.success){
                     this._snack.open('Autor removido com sucesso!', '', {
                         duration: 2000,
@@ -66,7 +66,7 @@ export class LivrosService {
 
     getAutoresByLivro(id:any) : Promise<any> {
         return new Promise((resolve, reject) =>{
-            this._apiService.add(environment.get_autores_byLivro, id).then((resp:any) =>{
+            this._apiService.getAll(environment.get_autores_byLivro+id).then((resp:any) =>{
                 if(resp.success)
                     resolve(resp.data);
                     
