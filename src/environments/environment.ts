@@ -13,6 +13,7 @@ export const environment = {
   get_allUsers: '/usuarios',
 
   get_allLivros: '/livros',
+  get_livroById: '/livros/',
   add_livro: '/addLivro',
   edit_livro: '/editLivro/',
   delete_livro: '/deleteLivro/',

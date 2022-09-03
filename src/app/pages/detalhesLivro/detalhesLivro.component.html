@@ -1,0 +1,49 @@
+<div class="body">
+    <h1>{{titulo}}</h1>
+    <mat-divider></mat-divider>
+    
+    <div class="livro" fxLayout="row" fxLayoutAlign="start start">
+        <div class="livroCapa" fxFlex="20">
+            <img class="capa" src="../../../assets/img/BookRed.png">
+        </div>
+        <div class="livroDesc" fxFlex="75" fxLayout="column" fxLayoutAlign="start start">
+
+            <div fxLayout="column" fxFlex="30">
+                <div class="titleItem">Sinopse:</div>
+                <div class="bodyItem">
+                    {{descricao}}
+                </div>
+            </div>
+            
+            <div fxLayout="column" fxFlex="30">
+                <div class="titleItem">Autores:</div>
+                <div class="bodyItem" *ngFor="let i of autores">
+                    {{i.nome}},
+                </div>
+            </div>
+
+            <div fxLayout="row" fxFlex="30">
+                <div class="titleItem">Palavras-Chave:</div>
+                <div class="bodyItem">
+                    {{palavrasChave}}
+                </div>
+            </div>
+                
+            <div fxLayout="row" fxFlex="30">
+                <div class="titleItem">Volume:</div>
+                <div class="bodyItem">
+                    {{volume}}
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <div class="button" fxLayout="row" fxLayoutAlign="end end">
+        <button class="butonEmprestimo" mat-button>
+            Solicitar Empréstimo
+        </button>
+    </div>
+    
+</div>

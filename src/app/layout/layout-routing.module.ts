@@ -50,7 +50,15 @@ const routes: Routes = [
       { 
         path: 'pages/profile', 
         loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfileModule)
-      },      
+      },     
+      { 
+        path: 'pages/detalhes', 
+        loadChildren: () => import('../pages/detalhesLivro/detalhesLivro.module').then(m => m.DetalhesLivroModule)
+      },    
+      { 
+        path: 'pages/searchBooks', 
+        loadChildren: () => import('../pages/pesquisaLivro/pesquisaLivro.module').then(m => m.PesquisaLivroModule)
+      },  
     ]
   },
   {

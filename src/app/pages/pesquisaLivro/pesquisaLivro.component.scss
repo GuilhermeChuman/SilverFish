@@ -1,0 +1,45 @@
+.body{
+    height: 100%;
+    padding-top: 50px;
+}
+
+.bookGrid{
+    flex-wrap: wrap;
+}
+
+.livroCapa{
+    height: 250px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    
+    .capa{
+        transition: transform .2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+    
+        p{
+            margin: 0px;
+            max-width: 140px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .capa:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}
+
+.chipLendo{
+    background-color: #3d79e7;
+}
+
+.chipLido{
+    background-color: #3de768;
+}
+

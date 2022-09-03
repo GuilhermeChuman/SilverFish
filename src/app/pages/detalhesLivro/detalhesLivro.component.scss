@@ -1,0 +1,73 @@
+.body{
+    height: 100%;
+}
+
+.livro{
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.livroCapa{
+    margin-right: 20px;
+    min-width: 250px;
+    height: 300px;
+
+    .capa{
+        min-width: 250px;
+        height: 300px;
+    }
+}
+
+.titleItem{
+    font-weight: bold;
+}
+
+.bodyItem{
+    margin-bottom: 10px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+
+.button{
+    margin-top: 20px;
+
+    .butonEmprestimo{
+        margin-top: 25px;
+        background-color:  #7ba0e6;
+        color:white;
+    }
+}
+
+.livroDesc{
+    height: auto;
+    min-width: 300px;
+    padding-top: 2px;
+
+    h3{
+        margin: 0px;
+    }
+
+    p{
+        text-align: justify;
+    }
+}
+
+.footer{
+    height: 50px;
+}
+
+.row{
+    padding-top: 20px;
+
+    img{
+        padding: 10px;
+    }
+}
+
+table{
+    width: 100%;
+}

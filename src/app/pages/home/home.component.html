@@ -2,8 +2,9 @@
     <h1>Recomendações para você</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-            <img src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <a href="" class="capa" href="/pages/detalhes?id={{id}}" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
+            <img src="{{fontesCapa+endpointCapa}}"  
+                 width="150" height="200">
             <mat-chip-list aria-label="Fish selection">
                 <mat-chip class="chipLido">Lido</mat-chip>
             </mat-chip-list>

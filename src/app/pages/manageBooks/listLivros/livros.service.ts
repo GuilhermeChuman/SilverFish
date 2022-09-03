@@ -26,6 +26,17 @@ export class LivrosService {
         });
     }
 
+    getLivroById(id:any): Promise<any> {
+        return new Promise( (resolve, reject) =>{
+            this._apiService.getAll(environment.get_livroById+id).then( (resp:any) =>{
+                if(resp.success)
+                    resolve(resp.data);
+                else
+                    reject();
+            });
+        })
+    }
+
     addTrabalho(data:any){
         return new Promise((resolve, reject) =>{
             this._apiService.add(environment.add_trabalho, data).then((resp:any) =>{
