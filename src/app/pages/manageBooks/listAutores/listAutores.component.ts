@@ -20,8 +20,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export class ListAutoresComponent implements OnInit{
 
-  @ViewChild(MatPaginator) paginatorAutor: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator)
+  paginatorAutor!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
   constructor(private _manageService: AutoresService,
               private _liveAnnouncer: LiveAnnouncer,
@@ -37,6 +39,10 @@ export class ListAutoresComponent implements OnInit{
 
     this.autores = await this._manageService.getAutores();
     this.dataSourceAutores = new MatTableDataSource(this.autores);
+    this.paginatorAutor._intl.nextPageLabel = '';
+    this.paginatorAutor._intl.previousPageLabel = '';
+    this.paginatorAutor._intl.lastPageLabel = '';
+    this.paginatorAutor._intl.firstPageLabel = '';
     this.dataSourceAutores.paginator = this.paginatorAutor;  
     this.dataSourceAutores.sort = this.sort; 
 

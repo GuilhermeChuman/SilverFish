@@ -21,8 +21,10 @@ import { EditorasService } from './editoras.service';
 
 export class ListEditorasComponent implements OnInit{
 
-  @ViewChild(MatPaginator) paginatorEditora: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator)
+  paginatorEditora!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
   constructor(private _manageService: EditorasService,
               private _liveAnnouncer: LiveAnnouncer,
@@ -37,6 +39,10 @@ export class ListEditorasComponent implements OnInit{
 
     this.editoras = await this._manageService.getEditoras();
     this.dataSourceEditora = new MatTableDataSource(this.editoras);
+    this.paginatorEditora._intl.nextPageLabel = '';
+    this.paginatorEditora._intl.previousPageLabel = '';
+    this.paginatorEditora._intl.lastPageLabel = '';
+    this.paginatorEditora._intl.firstPageLabel = '';
     this.dataSourceEditora.paginator = this.paginatorEditora;
 
   }

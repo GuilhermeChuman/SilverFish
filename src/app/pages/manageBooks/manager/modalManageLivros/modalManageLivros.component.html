@@ -20,23 +20,27 @@
         </div>
     
         <div fxLayout="row">
+
           <mat-form-field fxFlex="33" class="example-full-width" appearance="outline">
             <mat-label>ISBN</mat-label>
             <input matInput required formControlName="isbn">
             <mat-error>ISBN é obrigatório</mat-error>
           </mat-form-field> 
     
-          <mat-form-field fxFlex="33" class="example-full-width" appearance="outline">
+          <mat-form-field fxFlex="33" appearance="outline">
             <mat-label>Gênero</mat-label>
-            <input matInput required formControlName="idGenero">
-            <mat-error>Gênero é obrigatório</mat-error>
-          </mat-form-field> 
+            <mat-select formControlName="idGenero">
+              <mat-option *ngFor="let i of generos" [value]="i.id">{{i.nome}}</mat-option>
+            </mat-select>
+          </mat-form-field>
     
-          <mat-form-field fxFlex="33" class="example-full-width" appearance="outline">
+          <mat-form-field fxFlex="33" appearance="outline">
             <mat-label>Editora</mat-label>
-            <input matInput required formControlName="idEditora">
-            <mat-error>Editora é obrigatório</mat-error>
-          </mat-form-field> 
+            <mat-select formControlName="idEditora">
+              <mat-option *ngFor="let i of editoras" [value]="i.id">{{i.nome}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
         </div>
     
         <div fxLayout="row">
@@ -90,8 +94,8 @@
         <div fxLayout="column">
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let autor of autores">
-              {{autor.nome}}
-              <button class="tableButton" form="none" mat-button>
+              {{autor.autor}}
+              <button class="tableButton" form="none" (click)="openDialogLivro('delete', autor)" mat-button>
                   <mat-icon>delete</mat-icon>
               </button>
               
