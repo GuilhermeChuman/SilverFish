@@ -19,7 +19,7 @@ export class DetalhesLivroComponent implements OnInit{
   descricao = '';
   palavrasChave = '';
   volume = '';
-  autores: any[] = [];
+  autores = ' ';
 
   constructor(private routerParam: ActivatedRoute,
               private _livroService: LivrosService){
@@ -34,13 +34,12 @@ export class DetalhesLivroComponent implements OnInit{
 
     this.titulo = this.bookData.titulo;
     this.descricao = this.bookData.descricao;
-    this.palavrasChave =  this.bookData.palavraChave1 + '; ' + this.bookData.palavraChave2 + '; ' +
+    this.palavrasChave =  ' '+this.bookData.palavraChave1 + '; ' + this.bookData.palavraChave2 + '; ' +
                           this.bookData.palavraChave3
-    this.volume = this.bookData.volume;
+    this.volume = ' '+this.bookData.volume;
     this.bookData.autores.forEach( (element:any) => {
-      this.autores.push(element);
-    });
-  }
+      this.autores += element.autor+'; ';
+    });  }
 
 
   async getParam() {

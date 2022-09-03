@@ -15,22 +15,22 @@
                 </div>
             </div>
             
-            <div fxLayout="column" fxFlex="30">
-                <div class="titleItem">Autores:</div>
-                <div class="bodyItem" *ngFor="let i of autores">
-                    {{i.nome}},
+            <div fxLayout="row" fxFlex="30">
+                <div class="titleItem">Autores: </div>
+                <div class="bodyItem">
+                    {{autores}}
                 </div>
             </div>
 
             <div fxLayout="row" fxFlex="30">
-                <div class="titleItem">Palavras-Chave:</div>
+                <div class="titleItem">Palavras-Chave: </div>
                 <div class="bodyItem">
                     {{palavrasChave}}
                 </div>
             </div>
                 
             <div fxLayout="row" fxFlex="30">
-                <div class="titleItem">Volume:</div>
+                <div class="titleItem">Volume: </div>
                 <div class="bodyItem">
                     {{volume}}
                 </div>
