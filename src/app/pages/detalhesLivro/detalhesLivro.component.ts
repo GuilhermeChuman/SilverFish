@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
 
 @Component({
   selector: 'app-detalhes-livro',
@@ -22,6 +24,8 @@ export class DetalhesLivroComponent implements OnInit{
   autores = ' ';
 
   constructor(private routerParam: ActivatedRoute,
+              private _livrosService: LivrosService,
+              public dialog: MatDialog,
               private _livroService: LivrosService){
   }
 
@@ -47,5 +51,19 @@ export class DetalhesLivroComponent implements OnInit{
       this.id = x.id;
     });
   }  
+
+  openModal(){
+
+    const dialogRef = this.dialog.open(EmprestarLivroModalComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+
+      }
+    });
+
+  }
 
 }

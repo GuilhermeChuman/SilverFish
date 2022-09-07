@@ -21,10 +21,12 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { DetalhesLivroRoutingModule } from './detalhesLivro-routing.module';
 import { DetalhesLivroComponent } from './detalhesLivro.component';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
-      DetalhesLivroComponent,
+      DetalhesLivroComponent, EmprestarLivroModalComponent
     ],
     imports: [
       DetalhesLivroRoutingModule,
@@ -47,10 +49,11 @@ import { LivrosService } from '../manageBooks/listLivros/livros.service';
       MatChipsModule,
       MatBadgeModule,
       CommonModule,
+      MatDialogModule,
 
       
     ],
-    providers: [LivrosService],
+    providers: [LivrosService, MatDialog],
     bootstrap: []
   })
   export class DetalhesLivroModule { }
