@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,6 +21,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PesquisaLivroRoutingModule } from './pesquisaLivro-routing.module';
 import { PesquisaLivroComponent } from './pesquisaLivro.component';
+import { LivrosService } from '../manageBooks/listLivros/livros.service';
 
 @NgModule({
     declarations: [
@@ -46,10 +48,10 @@ import { PesquisaLivroComponent } from './pesquisaLivro.component';
       MatChipsModule,
       MatBadgeModule,
       MatTooltipModule,
-
+      CommonModule
       
     ],
-    providers: [],
+    providers: [LivrosService],
     bootstrap: []
   })
   export class PesquisaLivroModule { }

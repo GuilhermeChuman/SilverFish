@@ -1,59 +1,39 @@
-<div class="body">
+<div class="body" *ngIf="loaded">
 
     <div class="bookGrid" fxLayout="row" fxLayoutAlign="start start">
 
-        <div class="livroCapa" fxFlex="20">
-            <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                <img src="../../../assets/img/BookRed.png" width="150" height="200">
+        <div class="livroCapa" fxFlex="20" *ngFor="let livro of actualPage">
+            <a [routerLink]="['/pages/detalhes']" [queryParams]="{id: livro.id}"  class="capa" matTooltip="{{livro.titulo}}">
+                <img class="imgCapa" src="../../../assets/img/BookRed.png">
+                <p>{{livro.titulo}}</p>
                 <mat-chip-list aria-label="Fish selection">
                     <mat-chip class="chipLido">Lido</mat-chip>
                 </mat-chip-list>
-                <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            </a> 
-        </div>
-
-        <div class="livroCapa" fxFlex="20">
-            <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                <img src="../../../assets/img/BookRed.png" width="150" height="200">
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip class="chipLido">Lido</mat-chip>
-                </mat-chip-list>
-                <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            </a> 
-        </div>
-
-        <div class="livroCapa" fxFlex="20">
-            <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                <img src="../../../assets/img/BookRed.png" width="150" height="200">
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip class="chipLido">Lido</mat-chip>
-                </mat-chip-list>
-                <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            </a> 
-        </div>
-
-        <div class="livroCapa" fxFlex="20">
-            <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                <img src="../../../assets/img/BookRed.png" width="150" height="200">
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip class="chipLido">Lido</mat-chip>
-                </mat-chip-list>
-                <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            </a> 
-        </div>
-
-        <div class="livroCapa" fxFlex="20">
-            <a href="" class="capa" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
-                <img src="../../../assets/img/BookRed.png" width="150" height="200">
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip class="chipLido">Lido</mat-chip>
-                </mat-chip-list>
-                <p>Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
             </a> 
         </div>
 
     </div>      
 
+    <div class="paginator" fxLayout="row" fxLayoutAlign="space-around center">
+        <div class="innerPaginator" fxLayout="row" fxLayoutAlign="space-evenly center">
+            <button class="pagButton button-false" mat-flat-button (click)="previous()" [disabled]="this.actualPaginationIndex == 0">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button class="pagButton button-{{(pg==actualPageIndex+1)}}" mat-flat-button (click)="accessPage(pg)" 
+                    *ngFor="let pg of actualPagination">{{pg}}</button>
+            <button class="pagButton button-false" mat-flat-button (click)="next()" 
+                    [disabled]="this.actualPaginationIndex+1 == this.pagesPerFile.length">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </div> 
+
+    <div class="footer">
+
+    </div>
     
-    
+</div>
+
+<div class="body" *ngIf="!loaded" fxLayout="row" fxLayoutAlign="space-around center">
+    <mat-spinner></mat-spinner>
 </div>
