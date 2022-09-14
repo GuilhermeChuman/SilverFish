@@ -88,7 +88,7 @@
         </div>
         
         <mat-form-field style="height: 80%;">
-          <input matInput placeholder="Pesquisar">
+          <input matInput (keydown.enter)="search($event)" placeholder="Pesquisar">
         </mat-form-field>
   
       </mat-toolbar>

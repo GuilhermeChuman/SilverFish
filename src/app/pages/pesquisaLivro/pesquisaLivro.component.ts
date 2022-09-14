@@ -30,27 +30,39 @@ export class PesquisaLivroComponent implements OnInit{
               private _livrosService: LivrosService) {
     this.activatedRoute.queryParams.subscribe(params => {
           this.searchParam = params['search'];
+          this.loadData(this.searchParam);
       });
   }
 
   ngOnInit(){
-    this._livrosService.getLivros().then( (resp:any) =>{
-      this.books = resp;
-      for (let i = 0; i < this.books.length; i += this.chunkSize)
-        this.paginator.push(this.books.slice(i, i + this.chunkSize));
-      
-      for(let i = 1; i <= this.paginator.length; i++)
-        this.pages.push(i);
 
-      for (let i = 0; i < this.pages.length; i += this.chunkPageSize)
-        this.pagesPerFile.push(this.pages.slice(i, i + this.chunkPageSize));
+  }
 
-      this.actualPage = this.paginator[this.actualPageIndex];
-      this.actualPagination = this.pagesPerFile[this.actualPaginationIndex];
+  loadData(filter: any){
 
-      this.loaded = true;
-    });
+    console.log(filter);
 
+    if(filter == null || filter == undefined || filter == ''){
+
+      this._livrosService.getLivros().then( (resp:any) =>{
+        this.books = resp;
+        for (let i = 0; i < this.books.length; i += this.chunkSize)
+          this.paginator.push(this.books.slice(i, i + this.chunkSize));
+        
+        for(let i = 1; i <= this.paginator.length; i++)
+          this.pages.push(i);
+  
+        for (let i = 0; i < this.pages.length; i += this.chunkPageSize)
+          this.pagesPerFile.push(this.pages.slice(i, i + this.chunkPageSize));
+  
+        this.actualPage = this.paginator[this.actualPageIndex];
+        this.actualPagination = this.pagesPerFile[this.actualPaginationIndex];
+
+      });
+
+    }
+
+    this.loaded = true;
   }
 
   previous(){

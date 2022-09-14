@@ -1,7 +1,3 @@
-.body{
-    height: 100%;
-}
-
 .footer{
     height: 50px;
 }
@@ -11,6 +7,7 @@
     background-color:  #7ba0e6;
     color:white;
     height: 60px;
+    margin-bottom: 30px;
 }
 
 .toolBarItem{
@@ -25,3 +22,85 @@
     background: #00000023;
     padding-right: 10px;
 }
+
+.body{
+    height: 100%;
+}
+
+.bookGrid{
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+
+.button-true{
+    background-color: #3d79e7;
+    color: white;
+}
+
+.button-false{
+    background-color:  #7ba0e6;
+    color: white;
+}
+
+.livroCapa{
+    margin-right: 10px;
+    margin-bottom: 30px;
+
+    .imgCapa{
+        max-width: 80%;
+
+    }
+    
+    .capa{
+        transition: transform .2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+    
+        p{
+            margin: 0px;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: -webkit-center;
+        }
+    }
+
+    .capa:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}
+
+.paginator{
+    margin-top: 20px;
+}
+
+.innerPaginator{
+    width: 50%;
+    flex-wrap: wrap;
+}
+
+.pagButton{
+    border-radius: 50%;
+    padding: 0px;
+    min-width: 0px;
+    width: 3em;
+    height: 3em;
+}
+
+.footer{
+    height: 50px;
+}
+
+.chipLendo{
+    background-color: #3d79e7;
+}
+
+.chipLido{
+    background-color: #3de768;
+}
+

@@ -20,6 +20,11 @@ export class HeaderSideComponent implements OnInit {
 
   }
 
+  search(event: any) {
+    const query = event.target.value;   
+    this.router.navigate(['pages/searchBooks'], {queryParams: {search: query}});
+  }
+
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }

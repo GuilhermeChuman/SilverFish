@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { LivrosRoutingModule } from './livros-routing.module';
 
@@ -14,10 +15,13 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { LivrosComponent } from './livros.component';
+import { LivrosService } from '../manageBooks/listLivros/livros.service';
 
 @NgModule({
     declarations: [
@@ -40,8 +44,12 @@ import { LivrosComponent } from './livros.component';
       MatSnackBarModule,
       MatDividerModule,
       MatProgressSpinnerModule,
+      MatChipsModule,
+      MatTooltipModule,
+      CommonModule,
+
     ],
-    providers: [],
+    providers: [LivrosService],
     bootstrap: []
   })
   export class LivrosModule { }
