@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
 import { LoanComponent } from './loan.component';
+import { EmprestimoService } from 'src/app/services/emprestimo.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -41,8 +43,10 @@ import { LoanComponent } from './loan.component';
       MatDividerModule,
       MatTableModule,
       MatProgressSpinnerModule,
+      MatDialogModule,
+      
     ],
-    providers: [],
+    providers: [EmprestimoService],
     bootstrap: []
   })
   export class LoanModule { }

@@ -12,6 +12,9 @@ export const environment = {
 
   get_allUsers: '/usuarios',
 
+  emprestimos_getAll: '/emprestimo',
+  solicitarEmprestimo: '/solicitarEmprestimo',
+
   get_allLivros: '/livros',
   get_livroById: '/livros/',
   add_livro: '/addLivro',

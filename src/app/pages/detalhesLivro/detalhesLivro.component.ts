@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
 
@@ -25,6 +26,7 @@ export class DetalhesLivroComponent implements OnInit{
 
   constructor(private routerParam: ActivatedRoute,
               private _livrosService: LivrosService,
+              private emprestimosService: EmprestimoService,
               public dialog: MatDialog,
               private _livroService: LivrosService){
   }
@@ -60,7 +62,7 @@ export class DetalhesLivroComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-
+        this.emprestimosService.solicitarEmprestimo(this.id);
       }
     });
 

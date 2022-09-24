@@ -23,6 +23,7 @@ import { DetalhesLivroComponent } from './detalhesLivro.component';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EmprestimoService } from 'src/app/services/emprestimo.service';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
       
     ],
-    providers: [LivrosService, MatDialog],
+    providers: [LivrosService, MatDialog, EmprestimoService],
     bootstrap: []
   })
   export class DetalhesLivroModule { }
