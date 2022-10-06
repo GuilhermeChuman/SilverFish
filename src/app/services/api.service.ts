@@ -26,6 +26,12 @@ export class APIService {
         });
     }
 
+    async postWithId(route:any, data:any, id:any){
+        return await this.http.post(`${ environment.api_url_local }${route}${id}`,data).toPromise().then(resp =>{
+            return resp;
+        });
+    }
+
     async edit(route:any, id:any, data:any){
         return await this.http.put(`${ environment.api_url_local }${route}${id}`, data).toPromise().then(resp =>{
             return resp;

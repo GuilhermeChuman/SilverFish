@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { JWTService } from 'src/app/auth/jwt.service';
 
 @Component({
   selector: 'app-pesquisa-livro',
@@ -27,6 +28,7 @@ export class PesquisaLivroComponent implements OnInit{
   loaded = false;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private tokenService: JWTService,
               private _livrosService: LivrosService) {
     this.activatedRoute.queryParams.subscribe(params => {
           this.searchParam = params['search'];
@@ -40,11 +42,39 @@ export class PesquisaLivroComponent implements OnInit{
 
   loadData(filter: any){
 
-    console.log(filter);
+    let userData = this.tokenService.decodeData(localStorage.getItem('userData'));
+
+    const formData = {
+      titulo: filter,
+      descricao: filter,
+      palavraChave1: filter,
+      palavraChave2: filter,
+      palavraChave3: filter,
+      autores: filter
+    }
 
     if(filter == null || filter == undefined || filter == ''){
 
       this._livrosService.getLivros().then( (resp:any) =>{
+        this.books = resp;
+        for (let i = 0; i < this.books.length; i += this.chunkSize)
+          this.paginator.push(this.books.slice(i, i + this.chunkSize));
+        
+        for(let i = 1; i <= this.paginator.length; i++)
+          this.pages.push(i);
+  
+        for (let i = 0; i < this.pages.length; i += this.chunkPageSize)
+          this.pagesPerFile.push(this.pages.slice(i, i + this.chunkPageSize));
+  
+        this.actualPage = this.paginator[this.actualPageIndex];
+        this.actualPagination = this.pagesPerFile[this.actualPaginationIndex];
+
+      });
+
+    }
+    else{
+
+      this._livrosService.getFilterLivros(userData.id, formData).then( (resp:any) =>{
         this.books = resp;
         for (let i = 0; i < this.books.length; i += this.chunkSize)
           this.paginator.push(this.books.slice(i, i + this.chunkSize));

@@ -16,7 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoanComponent } from './loan.component';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -44,6 +44,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       MatTableModule,
       MatProgressSpinnerModule,
       MatDialogModule,
+      MatPaginatorModule
       
     ],
     providers: [EmprestimoService],

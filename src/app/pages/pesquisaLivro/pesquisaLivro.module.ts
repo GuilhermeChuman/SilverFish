@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PesquisaLivroRoutingModule } from './pesquisaLivro-routing.module';
 import { PesquisaLivroComponent } from './pesquisaLivro.component';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { JWTService } from 'src/app/auth/jwt.service';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,7 @@ import { LivrosService } from '../manageBooks/listLivros/livros.service';
       CommonModule
       
     ],
-    providers: [LivrosService],
+    providers: [LivrosService, JWTService],
     bootstrap: []
   })
   export class PesquisaLivroModule { }
