@@ -31,7 +31,7 @@ export class LivrosService {
         return new Promise((resolve, reject) =>{
             this._apiService.postWithId(environment.get_livroById, filter, id).then((resp:any) =>{
                 if(resp.success)
-                    resolve(resp.data[resp.data.length - 1]);
+                    resolve(resp.data);
                 else{
                     this._snack.open('Ocorreu algum erro ao acessar os Livros, por favor contate o administrador', 'OK');
                     reject();
