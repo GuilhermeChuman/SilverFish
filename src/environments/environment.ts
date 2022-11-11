@@ -14,6 +14,8 @@ export const environment = {
 
   emprestimos_getAll: '/emprestimo',
   solicitarEmprestimo: '/solicitarEmprestimo',
+  verifySolicitacao: '/verifySolicitacaoLivro/',
+  verifyEmprestimo: '/verifyEmprestimoLivro/',
 
   get_allLivros: '/livros',
   get_livroById: '/livros/',

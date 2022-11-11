@@ -5,24 +5,39 @@
     <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
       <!-- Id Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef fxFlex="20" mat-sort-header> Id </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="20"> {{element.id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="10" mat-sort-header> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="10"> {{element.id}} </mat-cell>
       </ng-container>
-      <!-- Name Column -->
+      <!-- Usuario Column -->
       <ng-container matColumnDef="nome">
-        <mat-header-cell *matHeaderCellDef fxFlex="50" mat-sort-header> Nome </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="50"> {{element.nome}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="25" mat-sort-header> Usuario </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="25"> {{element.nome}} </mat-cell>
+      </ng-container>
+      <!-- Livro Column -->
+      <ng-container matColumnDef="livro">
+        <mat-header-cell *matHeaderCellDef fxFlex="25" mat-sort-header> Livro </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="25"> {{element.titulo}} Vol. {{element.volume}} </mat-cell>
+      </ng-container>
+      <!-- Data Emprestimo Column -->
+      <ng-container matColumnDef="dataEmprestimo">
+        <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Empréstimo </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="15"> {{element.dataEmprestimo}} </mat-cell>
+      </ng-container>
+      <!-- Data Emprestimo Column -->
+      <ng-container matColumnDef="dataDevolucao">
+        <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Devolução </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="15"> {{element.dataDevolucao}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="actions">
-        <mat-header-cell class="centerColumn" *matHeaderCellDef fxFlex="30" fxLayoutAlign="center center"> Ações </mat-header-cell>
-        <mat-cell class="centerColumn" *matCellDef="let element" fxFlex="30" fxLayoutAlign="center center">
+        <mat-header-cell class="centerColumn" *matHeaderCellDef fxFlex="10" fxLayoutAlign="center center"> Ações </mat-header-cell>
+        <mat-cell class="centerColumn" *matCellDef="let element" fxFlex="10" fxLayoutAlign="center center">
           
           <button class="tableButton" mat-button>
-              <mat-icon>edit</mat-icon>
+              <mat-icon>done_outline</mat-icon>
           </button>
           <button class="tableButton" mat-button>
-              <mat-icon>delete</mat-icon>
+              <mat-icon>close</mat-icon>
           </button>
           </mat-cell>
       </ng-container>

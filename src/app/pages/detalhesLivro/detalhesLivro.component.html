@@ -41,8 +41,8 @@
     </div>
 
     <div class="button" fxLayout="row" fxLayoutAlign="end end">
-        <button class="butonEmprestimo" (click)="openModal()" mat-button>
-            Solicitar Empréstimo
+        <button class="butonEmprestimo disabled-{{!botaoAtivo}}" (click)="openModal()" mat-button [disabled]="!botaoAtivo">
+            {{botaoEmprestimo}}
         </button>
     </div>
     

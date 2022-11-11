@@ -24,9 +24,11 @@ export class DetalhesLivroComponent implements OnInit{
   volume = '';
   autores = ' ';
 
+  botaoEmprestimo = 'Solicitar Empréstimo';
+  botaoAtivo = true;
+
   constructor(private routerParam: ActivatedRoute,
-              private _livrosService: LivrosService,
-              private emprestimosService: EmprestimoService,
+              private _emprestimosService: EmprestimoService,
               public dialog: MatDialog,
               private _livroService: LivrosService){
   }
@@ -45,7 +47,22 @@ export class DetalhesLivroComponent implements OnInit{
     this.volume = ' '+this.bookData.volume;
     this.bookData.autores.forEach( (element:any) => {
       this.autores += element.autor+'; ';
-    });  }
+    });  
+  
+    this.botaoEmprestimo = await this._emprestimosService.verifyEmprestimo(this.bookData.id).then( (resp:any) =>{
+      if(resp == ''){
+        this.botaoAtivo = true;
+        return 'Solicitar Empréstimo';
+      }
+        
+      else{
+        this.botaoAtivo = false;
+        return resp;
+      }
+        
+    });
+
+  }
 
 
   async getParam() {
@@ -62,7 +79,7 @@ export class DetalhesLivroComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.emprestimosService.solicitarEmprestimo(this.id);
+        this._emprestimosService.solicitarEmprestimo(this.id);
       }
     });
 

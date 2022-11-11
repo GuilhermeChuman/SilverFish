@@ -39,6 +39,40 @@ export class EmprestimoService {
 
     }
 
+    public async verifyEmprestimo(idLivro:any):Promise<any> {
+
+        let userData = this.tokenService.decodeData(localStorage.getItem('userData'));
+
+        let response = '';
+
+        //Verificar se o usuário solicitou empresttimo
+        response = await this._apiService.getAll(environment.verifySolicitacao+userData.id+'/'+idLivro).then( (resp:any) =>{
+            if(resp.success)
+                if(resp.data)
+                    return 'Você já solicitou empréstimo';
+                else
+                    return '';
+            else
+                this._snack.open('Ocorreu um erro na comunicação com o servidor, contate o administrador do sistema', 'OK');
+                return 'error';
+        });
+
+        //Verificar se o livro em si está emprestado
+        if(response == '')
+            response = await this._apiService.getAll(environment.verifyEmprestimo+idLivro).then( (resp:any) =>{
+                if(resp.success)
+                    if(resp.data)
+                        return 'Este livro já foi emprestado';
+                    else
+                        return '';
+                else
+                    this._snack.open('Ocorreu um erro na comunicação com o servidor, contate o administrador do sistema', 'OK');
+                    return 'error';
+            });
+
+        return response;
+    }
+
     public async getEmprestimos():Promise<boolean> {
 
         return this._apiService.getAll(environment.emprestimos_getAll).then( (resp:any) =>{

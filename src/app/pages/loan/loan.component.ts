@@ -32,7 +32,7 @@ export class LoanComponent {
 
   emprestimos: any;
   dataSource: any;
-  displayedColumns = ['id', 'nome', 'actions'];
+  displayedColumns = ['id', 'nome', 'livro', 'dataEmprestimo', 'dataDevolucao', 'actions'];
 
   async ngOnInit(){
     this.emprestimos = await this._emprestimosService.getEmprestimos();
