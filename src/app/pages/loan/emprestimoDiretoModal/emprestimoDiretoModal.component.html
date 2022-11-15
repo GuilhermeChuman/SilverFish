@@ -1,0 +1,59 @@
+<div class="modal">
+  <h1 class="modal-title" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    {{title}}
+    <a class="cancelIcon" mat-button form="none" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </h1>
+  <div class="content">
+      
+    <form class="form" fxLayout="column" [formGroup]="emprestimoForm">
+        
+      <div fxLayout="row">
+
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label>Usuário para empréstimo</mat-label>
+          <mat-select formControlName="idUsuario" placeholder="Usuário" #singleSelect [disabled]="nomeAtivo">
+            <mat-option>
+              <ngx-mat-select-search [formControl]="userFilterCtrl"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let i of usuarios" [value]="i.id">
+              {{i.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayout="row">
+        <mat-checkbox class="check" [formControl]="checkName">Emprestar para mim</mat-checkbox>
+      </div>
+
+      <div fxLayout="row">
+
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label>Livro para empréstimo</mat-label>
+          <mat-select formControlName="idLivro" placeholder="Livro" #singleSelect>
+            <mat-option>
+              <ngx-mat-select-search [formControl]="livroFilterCtrl"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option *ngFor="let i of livros" [value]="i.id">
+              {{i.id}} - {{i.titulo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+  
+      <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+        <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
+        <button class="confirm" mat-raised-button (click)="submit()">Emprestar</button>
+      </div>
+  
+    </form>
+  
+  </div>
+      
+</div>
+
+

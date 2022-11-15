@@ -9,6 +9,8 @@ import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoanModalComponent } from './loanModal/loanModal.component';
+import { EmprestimoDiretoModalComponent } from './emprestimoDiretoModal/emprestimoDiretoModal.component';
 
 @Component({
   selector: 'app-loan',
@@ -47,6 +49,50 @@ export class LoanComponent {
   async getEmprestismos(){
     this.emprestimos = await this._emprestimosService.getEmprestimos();
     this.dataSource.data = this.emprestimos;
+  }
+
+  aprovaEmprestimo(idEmprestimo: any){
+
+    const dialogRef = this.dialog.open(LoanModalComponent, {
+      disableClose: true,
+      data:'aprove'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._emprestimosService.aprovaEmprestimo(idEmprestimo);
+        this.getEmprestismos();
+      }
+    });
+
+  }
+
+  emprestimoDireto(){
+    const dialogRef = this.dialog.open(EmprestimoDiretoModalComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        
+      }
+    });
+  }
+
+  recusaEmprestimo(idEmprestimo: any){
+
+    const dialogRef = this.dialog.open(LoanModalComponent, {
+      disableClose: true,
+      data:'reprove'
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._emprestimosService.recusaEmprestimo(idEmprestimo);
+        this.getEmprestismos();
+      }
+    });
+
   }
 
   sortData(sortState: any) {

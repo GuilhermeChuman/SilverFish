@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { LoanRoutingModule } from './loan-routing.module';
 
@@ -20,17 +21,33 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoanComponent } from './loan.component';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LoanModalComponent } from './loanModal/loanModal.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { EmprestimoDiretoModalComponent } from './emprestimoDiretoModal/emprestimoDiretoModal.component';
+import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { JWTService } from 'src/app/auth/jwt.service';
+
+
 
 @NgModule({
     declarations: [
       LoanComponent,
+      EmprestimoDiretoModalComponent,
+      LoanModalComponent
     ],
     imports: [
       LoanRoutingModule,
-
+      CommonModule,
       FormsModule,
+      MatCheckboxModule,
+      MatFormFieldModule,
+      NgxMatSelectSearchModule,
+      MatListModule,
       ReactiveFormsModule,
-  
+      MatSelectModule,
       MatInputModule,
       MatSidenavModule,
       MatButtonModule,
@@ -47,7 +64,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       MatPaginatorModule
       
     ],
-    providers: [EmprestimoService],
+    providers: [EmprestimoService, LivrosService, JWTService],
     bootstrap: []
   })
   export class LoanModule { }

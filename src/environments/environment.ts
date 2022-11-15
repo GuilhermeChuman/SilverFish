@@ -13,11 +13,14 @@ export const environment = {
   get_allUsers: '/usuarios',
 
   emprestimos_getAll: '/emprestimo',
+  aprovarEmprestimo: '/aprovarEmprestimo/',
+  recusarEmprestimo: '/recusarEmprestimo/',
   solicitarEmprestimo: '/solicitarEmprestimo',
   verifySolicitacao: '/verifySolicitacaoLivro/',
   verifyEmprestimo: '/verifyEmprestimoLivro/',
 
   get_allLivros: '/livros',
+  get_allLivrosSemEmprestimo: '/getLivrosSemEmprestimo',
   get_livroById: '/livros/',
   add_livro: '/addLivro',
   edit_livro: '/editLivro/',

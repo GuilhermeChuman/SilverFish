@@ -26,6 +26,21 @@ export class LivrosService {
         });
     }
 
+    //LIVROS SEM EMPRESTIMO
+    getLivrosSemEmprestimo() : Promise<any> {
+        return new Promise((resolve, reject) =>{
+            this._apiService.getAll(environment.get_allLivrosSemEmprestimo).then((resp:any) =>{
+                if(resp.success)
+                    resolve(resp.data);
+                else{
+                    this._snack.open('Ocorreu algum erro ao acessar os Livros, por favor contate o administrador', 'OK');
+                    reject();
+                }
+                    
+            });
+        });
+    }
+
     //AUTORES
     getFilterLivros(id:any, filter:any) : Promise<any> {
         return new Promise((resolve, reject) =>{

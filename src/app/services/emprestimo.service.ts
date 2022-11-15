@@ -13,6 +13,19 @@ export class EmprestimoService {
                 private tokenService: JWTService,
                 private _apiService: APIService) {}
 
+    public async getUsers():Promise<any>{
+
+        return this._apiService.getAll(environment.get_allUsers).then( (resp:any) =>{
+            if(resp.success){
+                return resp.data;
+            }
+            else{
+                this._snack.open(resp.message, 'OK');
+                return false;
+            }
+        });
+    }
+
     public async solicitarEmprestimo(idLivro:any):Promise<boolean> {
 
         let userData = this.tokenService.decodeData(localStorage.getItem('userData'));
@@ -73,6 +86,34 @@ export class EmprestimoService {
         return response;
     }
 
+    public async aprovaEmprestimo(idEmprestimo:any):Promise<any>{
+
+        return this._apiService.getAll(environment.aprovarEmprestimo+idEmprestimo).then( (resp:any) =>{
+            if(resp.success){
+                this._snack.open('Solcitação de Empréstimo aprovada!', 'OK');
+                return resp.data;
+            }
+            else{
+                this._snack.open('Ocorreu um erro ao recuperar os dados, favor consultar o administrador!', 'OK');
+                return false;
+            }
+        });
+    }
+
+    public async recusaEmprestimo(idEmprestimo:any):Promise<any>{
+        
+        return this._apiService.getAll(environment.recusarEmprestimo+idEmprestimo).then( (resp:any) =>{
+            if(resp.success){
+                this._snack.open('Solcitação de Empréstimo recusada! O registro foi excluído', 'OK');
+                return resp.data;
+            }
+            else{
+                this._snack.open('Ocorreu um erro ao recuperar os dados, favor consultar o administrador!', 'OK');
+                return false;
+            }
+        });
+    }
+
     public async getEmprestimos():Promise<boolean> {
 
         return this._apiService.getAll(environment.emprestimos_getAll).then( (resp:any) =>{
@@ -84,6 +125,5 @@ export class EmprestimoService {
                 return false;
             }
         });
-
     }
 }

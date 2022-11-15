@@ -6,47 +6,56 @@
       <!-- Id Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef fxFlex="10" mat-sort-header> Id </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="10"> {{element.id}} </mat-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="10"> {{element.id}} </mat-cell>
       </ng-container>
       <!-- Usuario Column -->
       <ng-container matColumnDef="nome">
-        <mat-header-cell *matHeaderCellDef fxFlex="25" mat-sort-header> Usuario </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="25"> {{element.nome}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="20" mat-sort-header> Usuario </mat-header-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="20"> {{element.nome}} </mat-cell>
       </ng-container>
       <!-- Livro Column -->
       <ng-container matColumnDef="livro">
-        <mat-header-cell *matHeaderCellDef fxFlex="25" mat-sort-header> Livro </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="25"> {{element.titulo}} Vol. {{element.volume}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="30" mat-sort-header> Livro </mat-header-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="30"> {{element.titulo}} Vol. {{element.volume}} </mat-cell>
       </ng-container>
       <!-- Data Emprestimo Column -->
       <ng-container matColumnDef="dataEmprestimo">
         <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Empréstimo </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="15"> {{element.dataEmprestimo}} </mat-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{element.dataEmprestimo}} </mat-cell>
       </ng-container>
       <!-- Data Emprestimo Column -->
       <ng-container matColumnDef="dataDevolucao">
         <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Devolução </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="15"> {{element.dataDevolucao}} </mat-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{element.dataDevolucao}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="actions">
         <mat-header-cell class="centerColumn" *matHeaderCellDef fxFlex="10" fxLayoutAlign="center center"> Ações </mat-header-cell>
-        <mat-cell class="centerColumn" *matCellDef="let element" fxFlex="10" fxLayoutAlign="center center">
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" class="centerColumn" *matCellDef="let element" fxFlex="10" fxLayoutAlign="center center">
           
-          <button class="tableButton" mat-button>
+          <button class="tableButton" (click)="aprovaEmprestimo(element.id)" 
+                  mat-button [disabled]="element.estado == 'D' || element.estado == 'E'">
               <mat-icon>done_outline</mat-icon>
           </button>
-          <button class="tableButton" mat-button>
+          <button class="tableButton" (click)="recusaEmprestimo(element.id)" 
+                  mat-button [disabled]="element.estado == 'D' || element.estado == 'E'">
               <mat-icon>close</mat-icon>
           </button>
           </mat-cell>
       </ng-container>
       <mat-header-row @rowsAnimation *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row @rowsAnimation *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-      <mat-paginator  [pageSizeOptions]="[5, 10]"
-                      showFirstLastButtons >
-      </mat-paginator>
+    </mat-table>
+
+    <mat-paginator  [pageSizeOptions]="[5, 10]"
+                    showFirstLastButtons >
+    </mat-paginator>
+
+    <div class="button" fxLayout="row" fxLayoutAlign="end end">
+      <button class="butonEmprestimo" (click)="emprestimoDireto()" mat-button>
+          Empréstimo Direto
+      </button>
+    </div>
 
     <div class="footer"></div>
 

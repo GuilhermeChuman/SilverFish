@@ -1,0 +1,21 @@
+<div class="modal">
+  <h1 class="modal-title" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    {{title}}
+    <a class="cancelIcon" mat-button form="none" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </h1>
+  <div class="content">
+    
+    <h3>{{text}}</h3>
+  
+      <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
+        <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
+        <button class="confirm" mat-raised-button (click)="submit()">Confirmar</button>
+      </div>
+  
+  </div>
+      
+</div>
+
+

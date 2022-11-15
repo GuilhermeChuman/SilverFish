@@ -2,6 +2,33 @@
     height: 100%;
 }
 
+.button{
+    margin-top: 20px;
+
+    .butonEmprestimo{
+        margin-top: 25px;
+        min-width: 150px;
+        background-color:  #7ba0e6;
+        color:white;
+    }
+}
+
+.line-S{
+    background-color: #7cb0ff;
+}
+
+.line-E{
+    background-color: #f0ff9a;
+}
+
+.ATR{
+    background-color: #ff9a9a;
+}
+
+.line-D{
+    background-color: #9affa2;
+}
+
 .footer{
     height: 50px;
 }
