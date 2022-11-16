@@ -1,5 +1,28 @@
 <div class="body">
     <h1>Empréstimos</h1>
+
+    <div class="legenda" fxLayout="row">
+      <div class="item-legenda">
+        <mat-icon class="solicitado">square</mat-icon>
+        Solicitado
+      </div>
+
+      <div class="item-legenda">
+        <mat-icon class="emprestado">square</mat-icon>
+        Emprestado
+      </div>
+
+      <div class="item-legenda">
+        <mat-icon class="atrasado">square</mat-icon>
+        Atrasado
+      </div>
+
+      <div class="item-legenda">
+        <mat-icon class="devolvido">square</mat-icon>
+        Devolvido
+      </div>
+    </div>
+
     <mat-divider></mat-divider>
     
     <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
@@ -21,12 +44,12 @@
       <!-- Data Emprestimo Column -->
       <ng-container matColumnDef="dataEmprestimo">
         <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Empréstimo </mat-header-cell>
-        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{element.dataEmprestimo}} </mat-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{formatDate(element.dataEmprestimo)}} </mat-cell>
       </ng-container>
       <!-- Data Emprestimo Column -->
       <ng-container matColumnDef="dataDevolucao">
         <mat-header-cell *matHeaderCellDef fxFlex="15" mat-sort-header> Devolução </mat-header-cell>
-        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{element.dataDevolucao}} </mat-cell>
+        <mat-cell class="line-{{element.estado}} {{element.diasEmprestimo}}" *matCellDef="let element" fxFlex="15"> {{formatDate(element.dataDevolucao)}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="actions">
@@ -50,6 +73,8 @@
     <mat-paginator  [pageSizeOptions]="[5, 10]"
                     showFirstLastButtons >
     </mat-paginator>
+
+    <mat-divider></mat-divider>
 
     <div class="button" fxLayout="row" fxLayoutAlign="end end">
       <button class="butonEmprestimo" (click)="emprestimoDireto()" mat-button>

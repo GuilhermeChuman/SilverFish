@@ -54,13 +54,27 @@ export class EmprestimoDiretoModalComponent implements OnInit{
     });
 
     this.checkName.valueChanges.subscribe(x => {
-      this.emprestimoForm.controls.idUsuario.setValue(this.userData.id);
-      this.nomeAtivo = x;
-    })
+      if(x){
+        this.emprestimoForm.controls.idUsuario.setValue(this.userData.id);
+        this.nomeAtivo = x;
+      }
+      else{
+        this.emprestimoForm.controls.idUsuario.setValue(); 
+        this.nomeAtivo = x;
+      }
+    });
+
+    let date = new Date().toLocaleString();
+
+    let dia = date.slice(0,2);
+    let mes = date.slice(3,5);
+    let ano = date.slice(6,10);
 
     this.emprestimoForm = new FormGroup({
       idUsuario: new FormControl(null,Validators.required),
       idLivro: new FormControl(null,Validators.required),
+      dataEmprestimo: new FormControl(ano+'-'+mes+'-'+dia),
+      estado: new FormControl('E')
     });
 
     this.usuarios = await this._EmprestimoService.getUsers();

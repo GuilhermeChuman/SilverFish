@@ -47,7 +47,7 @@
   
       <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
         <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
-        <button class="confirm" mat-raised-button (click)="submit()">Emprestar</button>
+        <button class="confirm bt-{{emprestimoForm.valid}}" mat-raised-button (click)="submit()" [disabled]="!emprestimoForm.valid">Emprestar</button>
       </div>
   
     </form>

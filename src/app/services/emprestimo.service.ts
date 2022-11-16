@@ -29,15 +29,18 @@ export class EmprestimoService {
     public async solicitarEmprestimo(idLivro:any):Promise<boolean> {
 
         let userData = this.tokenService.decodeData(localStorage.getItem('userData'));
-        let date = new Date();
+        
+        let date = new Date().toLocaleString();
+
+        let dia = date.slice(0,2);
+        let mes = date.slice(3,5);
+        let ano = date.slice(6,10);
 
         const formData = {
             idLivro: idLivro,
             idUsuario: userData.id,
-            dataEmprestimo: date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay()
+            dataEmprestimo: ano+'-'+mes+'-'+dia
         }
-
-        console.log(formData);
 
         return this._apiService.add(environment.solicitarEmprestimo, formData).then( (resp:any) =>{
             if(resp.success){
@@ -98,6 +101,21 @@ export class EmprestimoService {
                 return false;
             }
         });
+    }
+
+    public async emprestimoDireto(formData: any):Promise<any>{
+
+        return this._apiService.add(environment.emprestimoDireto, formData).then( (resp:any) =>{
+            if(resp.success){
+                this._snack.open('Emprpestimo efetuado!', 'OK');
+                return true;
+            }
+            else{
+                this._snack.open(resp.message, 'OK');
+                return false;
+            }
+        });
+
     }
 
     public async recusaEmprestimo(idEmprestimo:any):Promise<any>{

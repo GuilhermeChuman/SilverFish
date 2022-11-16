@@ -48,10 +48,10 @@ export class LoanComponent {
 
   async getEmprestismos(){
     this.emprestimos = await this._emprestimosService.getEmprestimos();
-    this.dataSource.data = this.emprestimos;
+    this.dataSource.data = await this.emprestimos;
   }
 
-  aprovaEmprestimo(idEmprestimo: any){
+  async aprovaEmprestimo(idEmprestimo: any){
 
     const dialogRef = this.dialog.open(LoanModalComponent, {
       disableClose: true,
@@ -74,7 +74,8 @@ export class LoanComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        
+        this._emprestimosService.emprestimoDireto(result);
+        this.getEmprestismos();
       }
     });
   }
@@ -93,6 +94,20 @@ export class LoanComponent {
       }
     });
 
+  }
+
+  formatDate(date:any){
+
+    console.log(date);
+
+    if(date == null)
+      return '-';
+
+    let ano = date.slice(0,4);
+    let mes = date.slice(5,7);
+    let dia = date.slice(8,10);
+
+    return dia+'/'+mes+'/'+ano;
   }
 
   sortData(sortState: any) {

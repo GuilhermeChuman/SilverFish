@@ -16,6 +16,7 @@ export const environment = {
   aprovarEmprestimo: '/aprovarEmprestimo/',
   recusarEmprestimo: '/recusarEmprestimo/',
   solicitarEmprestimo: '/solicitarEmprestimo',
+  emprestimoDireto: '/emprestar',
   verifySolicitacao: '/verifySolicitacaoLivro/',
   verifyEmprestimo: '/verifyEmprestimoLivro/',
 

@@ -29,6 +29,39 @@
     background-color: #9affa2;
 }
 
+.legenda{
+    margin-bottom: 20px;
+}
+
+.item-legenda{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    
+    .solicitado{
+        color: #7cb0ff;
+    }
+
+    .emprestado{
+        color: #f0ff9a;
+    }
+
+    .atrasado{
+        color: #ff9a9a;
+    }
+
+    .devolvido{
+        color: #9affa2;
+    }
+}
+
+.tableButton{
+    min-width: 35px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .footer{
     height: 50px;
 }

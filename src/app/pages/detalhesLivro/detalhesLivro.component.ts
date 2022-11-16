@@ -80,6 +80,7 @@ export class DetalhesLivroComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this._emprestimosService.solicitarEmprestimo(this.id);
+        this.ngOnInit();
       }
     });
 
