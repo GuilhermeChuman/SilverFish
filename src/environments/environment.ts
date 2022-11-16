@@ -14,6 +14,7 @@ export const environment = {
 
   emprestimos_getAll: '/emprestimo',
   aprovarEmprestimo: '/aprovarEmprestimo/',
+  devolverLivro: '/devolverLivro/',
   recusarEmprestimo: '/recusarEmprestimo/',
   solicitarEmprestimo: '/solicitarEmprestimo',
   emprestimoDireto: '/emprestar',

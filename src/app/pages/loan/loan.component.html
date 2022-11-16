@@ -64,6 +64,10 @@
                   mat-button [disabled]="element.estado == 'D' || element.estado == 'E'">
               <mat-icon>close</mat-icon>
           </button>
+          <button class="tableButton" (click)="devolverLivro(element.id)" 
+                  mat-button [disabled]="element.estado == 'D'">
+              <mat-icon>assignment_turned_in</mat-icon>
+          </button>
           </mat-cell>
       </ng-container>
       <mat-header-row @rowsAnimation *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -103,6 +103,21 @@ export class EmprestimoService {
         });
     }
 
+    
+    public async devolverLivro(formData:any):Promise<any>{
+
+        return this._apiService.add(environment.devolverLivro, formData).then( (resp:any) =>{
+            if(resp.success){
+                this._snack.open('Devolução realizada com sucesso!', 'OK');
+                return resp.data;
+            }
+            else{
+                this._snack.open('Ocorreu um erro ao recuperar os dados, favor consultar o administrador!', 'OK');
+                return false;
+            }
+        });
+    }
+
     public async emprestimoDireto(formData: any):Promise<any>{
 
         return this._apiService.add(environment.emprestimoDireto, formData).then( (resp:any) =>{

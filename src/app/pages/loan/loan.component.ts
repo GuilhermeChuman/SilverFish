@@ -67,6 +67,34 @@ export class LoanComponent {
 
   }
 
+  async devolverLivro(idEmprestimo: any){
+
+    const dialogRef = this.dialog.open(LoanModalComponent, {
+      disableClose: true,
+      data:'aprove'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+
+        let date = new Date().toLocaleString();
+
+        let dia = date.slice(0,2);
+        let mes = date.slice(3,5);
+        let ano = date.slice(6,10);
+
+        const formData = {
+          idEmprestimo: idEmprestimo,
+          dataDevolucao: ano+'-'+mes+'-'+dia
+        }
+
+        this._emprestimosService.devolverLivro(formData);
+        this.getEmprestismos();
+      }
+    });
+
+  }
+
   emprestimoDireto(){
     const dialogRef = this.dialog.open(EmprestimoDiretoModalComponent, {
       disableClose: true
@@ -97,8 +125,6 @@ export class LoanComponent {
   }
 
   formatDate(date:any){
-
-    console.log(date);
 
     if(date == null)
       return '-';
