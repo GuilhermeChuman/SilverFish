@@ -2,6 +2,9 @@ import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChi
 import { MatSidenav } from '@angular/material/sidenav';
 import { Chart, registerables } from 'chart.js';
 import { JWTService } from 'src/app/auth/jwt.service';
+import { ListasService } from 'src/app/services/listas.service';
+import { EditorasService } from '../manageBooks/listEditoras/editoras.service';
+import { GenerosService } from '../manageBooks/listGeneros/generos.service';
 Chart.register(...registerables);
 
 @Component({
@@ -12,14 +15,32 @@ Chart.register(...registerables);
 
 export class ProfileComponent implements OnInit, AfterContentInit{
 
-  constructor(private _jwtSerice: JWTService) { }
+  constructor(private _jwtSerice: JWTService, 
+              private _ListaService: ListasService,
+              private _GenerosService: GenerosService,
+              private _EditorasService: EditorasService) { }
+
+  selectedTheme = 'generos';
+
+  classificacoesLabels: any[] = [];
+  classificacoesValues: any[] = [];
+  classificacoesColors: any[] = [];
+
+  livrosPorStatus: any[] = [];
+  livrosPorGenero: any[] = [];
+  livrosPorEditora: any[] = [];
+
 
   userData: any;
   nome: any = '';
 
+  lista: any;
+
+  chart: any;
   canvas: any;
   ctx: any;
 
+  chart2: any;
   canvas2: any;
   ctx2: any;
 
@@ -39,33 +60,81 @@ export class ProfileComponent implements OnInit, AfterContentInit{
     this.userData = this._jwtSerice.decodeData(localStorage.getItem('userData'));
     this.nome = this.userData.nome;
 
+    this.lista = await this._ListaService.getLista(this.userData.id)
+    
+    var livros = this.lista.livros;
+
+    //Contando Generos ########################################################
+
+    //const todosGeneros = await this._GenerosService.getGeneros();
+
+    const responseGenero = [...livros.reduce( (mp:any, o:any) => {
+      if (!mp.has(o.genero)) mp.set(o.genero, { ...o, count: 0 });
+      mp.get(o.genero).count++;
+      return mp;
+    }, new Map).values()];
+
+    responseGenero.forEach(element => {
+      let obj = { 'Genero': element.genero == null ? 'Nulo' : element.genero, 'Quantidade': element.count}
+      this.livrosPorGenero.push(obj);
+    });
+
+    //Contando Status ########################################################
+
+    const todosStatus = await this._ListaService.getStatus();
+
+    const responseStatus = [...livros.reduce( (mp:any, o:any) => {
+      if (!mp.has(o.status)) mp.set(o.status, { ...o, count: 0 });
+      mp.get(o.status).count++;
+      return mp;
+    }, new Map).values()];
+
+    todosStatus.forEach((x:any) => {
+
+      let obj = { Status: x.nome, Quantidade: 0, Cor: x.cor}
+
+      responseStatus.forEach(element => {
+        if(x.nome == element.status)
+          obj.Quantidade = element.count
+
+      });
+
+      this.livrosPorStatus.push(obj);
+    });
+
+    //Status Charts Data
+    const statusLabels: any[] = [];
+    const statusValues: any[] = [];
+    const statusColors: any[] = [];
+    this.livrosPorStatus.forEach( element => {
+      statusLabels.push(element.Status);
+      statusValues.push(element.Quantidade);
+      statusColors.push(element.Cor);
+    })
+
+    //Classificações Charts Data
+    this.livrosPorGenero.forEach( element => {
+      this.classificacoesLabels.push(element.Genero);
+      this.classificacoesValues.push(element.Quantidade);
+      this.classificacoesColors.push("#" +(Math.floor(Math.random()*16777215).toString(16)));
+    })
+    
     await this.delay(500);
 
-    this.canvas = document.getElementById('stats');
+    this.canvas = document.getElementById('listaLeitura');
     this.ctx = this.canvas.getContext('2d');
 
-    this.canvas2 = document.getElementById('stats2');
+    this.canvas2 = document.getElementById('listaGenero');
     this.ctx2 = this.canvas2.getContext('2d');
 
-    this.canvas3 = document.getElementById('stats3');
-    this.ctx3 = this.canvas3.getContext('2d');
-
-    const chart = new Chart(this.ctx, {
+    this.chart = new Chart(this.ctx, {
         type: 'doughnut',
         data: {
-          labels: [
-            'Lendo',
-            'Lido',
-            'À Ler'
-          ],
+          labels: statusLabels,
           datasets: [{
             label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: [
-              '#3d79e7',
-              '#3de768',
-              '#e8f34b'
-            ],
+            data: statusValues,
+            backgroundColor: statusColors,
             hoverOffset: 4
           }]
         },
@@ -73,7 +142,7 @@ export class ProfileComponent implements OnInit, AfterContentInit{
           responsive: true,
           plugins: {
             title:{
-              display: true,
+              display: false,
               text: 'Lista de Livros'
             },
             legend: {
@@ -90,64 +159,21 @@ export class ProfileComponent implements OnInit, AfterContentInit{
         }
     });
 
-    const chart3 = new Chart(this.ctx3, {
-      type: 'line',
-      data: {
-        labels: [
-          'JUN',
-          'JUL',
-          'AGO'
-        ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [100, 150, 200],
-          backgroundColor: [
-            '#3d79e7'
-          ]
-        }]
-      },
-      options: {
-        elements:{
-          line:{
-            borderColor: '#3d79e7'
-          }
-        },
-        responsive: true,
-        plugins: {
-          title:{
-            display: true,
-            text: 'Histórico de leitura'
-          },
-          legend: {
-            display: false,
-          } 
-        }
-      }
-    });
-
-    const chart2 = new Chart(this.ctx2, {
+    this.chart2 = new Chart(this.ctx2, {
       type: 'bar',
       data: {
-        labels: [
-          'Red',
-          'Blue',
-          'Yellow'
-        ],
+        labels: this.classificacoesLabels,
         datasets: [{
           label: 'My First Dataset',
-          data: [100, 150, 200],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-          ]
+          data: this.classificacoesValues,
+          backgroundColor: this.classificacoesColors
         }]
       },
       options: {
         responsive: true,
         plugins: {
           title:{
-            display: true,
+            display: false,
             text: 'Gosto por gênero'
           },
           legend: {

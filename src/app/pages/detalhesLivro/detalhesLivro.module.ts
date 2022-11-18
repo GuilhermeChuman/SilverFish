@@ -24,10 +24,13 @@ import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
+import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarListaModal.component';
 
 @NgModule({
     declarations: [
-      DetalhesLivroComponent, EmprestarLivroModalComponent
+      DetalhesLivroComponent, 
+      EmprestarLivroModalComponent, 
+      AdicionarListaModalComponent
     ],
     imports: [
       DetalhesLivroRoutingModule,

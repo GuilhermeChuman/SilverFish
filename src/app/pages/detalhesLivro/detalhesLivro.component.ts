@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarListaModal.component';
 import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
 
 @Component({
@@ -74,6 +75,21 @@ export class DetalhesLivroComponent implements OnInit{
   openModal(){
 
     const dialogRef = this.dialog.open(EmprestarLivroModalComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._emprestimosService.solicitarEmprestimo(this.id);
+        this.ngOnInit();
+      }
+    });
+
+  }
+
+  modalLista(){
+
+    const dialogRef = this.dialog.open(AdicionarListaModalComponent, {
       disableClose: true
     });
 

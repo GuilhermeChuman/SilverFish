@@ -18,6 +18,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProfileComponent } from './profile.component';
+import { ListasService } from 'src/app/services/listas.service';
+import { EditorasService } from '../manageBooks/listEditoras/editoras.service';
+import { GenerosService } from '../manageBooks/listGeneros/generos.service';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 @NgModule({
     declarations: [
@@ -30,7 +35,7 @@ import { ProfileComponent } from './profile.component';
       ReactiveFormsModule,
 
       MatProgressSpinnerModule,
-  
+      MatRadioModule,
       MatInputModule,
       MatSidenavModule,
       MatButtonModule,
@@ -45,7 +50,7 @@ import { ProfileComponent } from './profile.component';
 
 
     ],
-    providers: [],
+    providers: [ ListasService, GenerosService, EditorasService ],
     bootstrap: []
   })
   export class ProfileModule { }

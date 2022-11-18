@@ -4,10 +4,23 @@
     <div class="content" fxLayout="column">
         <div class="statistics" fxLayout="column">
             <h2>Estatísticas</h2>
+            
+            <button class="btListaCompleta" mat-button>
+                Ver Lista Completa
+            </button>
+
             <div fxLayout="row wrap">
-                <canvas class="chart" id="stats" width="2" height="1"></canvas>
-                <canvas class="chart" id="stats3" width="2" height="1"></canvas>
-                <canvas class="chart" id="stats2" width="2" height="1"></canvas>
+
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="40">
+                    <h3>Lista de Leitura</h3>
+                    <canvas class="chart" id="listaLeitura" width="2" height="1"></canvas>
+                </div>
+                
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="40">
+                    <h3>Livros por Gênero</h3>
+                    <canvas class="chart" id="listaGenero" width="2" height="1"></canvas>
+                </div>
+
             </div>
             
         </div>
