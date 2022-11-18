@@ -1,10 +1,12 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Chart, registerables } from 'chart.js';
 import { JWTService } from 'src/app/auth/jwt.service';
 import { ListasService } from 'src/app/services/listas.service';
 import { EditorasService } from '../manageBooks/listEditoras/editoras.service';
 import { GenerosService } from '../manageBooks/listGeneros/generos.service';
+import { MyListComponent } from './myList/myList.component';
 Chart.register(...registerables);
 
 @Component({
@@ -16,11 +18,12 @@ Chart.register(...registerables);
 export class ProfileComponent implements OnInit, AfterContentInit{
 
   constructor(private _jwtSerice: JWTService, 
+              public dialog: MatDialog,
               private _ListaService: ListasService,
               private _GenerosService: GenerosService,
               private _EditorasService: EditorasService) { }
 
-  selectedTheme = 'generos';
+  todosStatus: any;
 
   classificacoesLabels: any[] = [];
   classificacoesValues: any[] = [];
@@ -29,7 +32,6 @@ export class ProfileComponent implements OnInit, AfterContentInit{
   livrosPorStatus: any[] = [];
   livrosPorGenero: any[] = [];
   livrosPorEditora: any[] = [];
-
 
   userData: any;
   nome: any = '';
@@ -51,6 +53,17 @@ export class ProfileComponent implements OnInit, AfterContentInit{
 
   }
 
+  openMyList(){
+
+    const dialogRef = this.dialog.open(MyListComponent, {
+      disableClose: true,
+      data: {
+        lista: this.lista,
+        todosStatus: this.todosStatus
+      }
+    });
+  }
+
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
@@ -61,7 +74,8 @@ export class ProfileComponent implements OnInit, AfterContentInit{
     this.nome = this.userData.nome;
 
     this.lista = await this._ListaService.getLista(this.userData.id)
-    
+    this.todosStatus = await this._ListaService.getStatus();
+
     var livros = this.lista.livros;
 
     //Contando Generos ########################################################
@@ -81,15 +95,13 @@ export class ProfileComponent implements OnInit, AfterContentInit{
 
     //Contando Status ########################################################
 
-    const todosStatus = await this._ListaService.getStatus();
-
     const responseStatus = [...livros.reduce( (mp:any, o:any) => {
       if (!mp.has(o.status)) mp.set(o.status, { ...o, count: 0 });
       mp.get(o.status).count++;
       return mp;
     }, new Map).values()];
 
-    todosStatus.forEach((x:any) => {
+    this.todosStatus.forEach((x:any) => {
 
       let obj = { Status: x.nome, Quantidade: 0, Cor: x.cor}
 
@@ -112,7 +124,7 @@ export class ProfileComponent implements OnInit, AfterContentInit{
       statusColors.push(element.Cor);
     })
 
-    //Classificações Charts Data
+    //Generos Charts Data
     this.livrosPorGenero.forEach( element => {
       this.classificacoesLabels.push(element.Genero);
       this.classificacoesValues.push(element.Quantidade);

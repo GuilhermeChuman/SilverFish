@@ -22,18 +22,21 @@ import { ListasService } from 'src/app/services/listas.service';
 import { EditorasService } from '../manageBooks/listEditoras/editoras.service';
 import { GenerosService } from '../manageBooks/listGeneros/generos.service';
 import { MatRadioModule } from '@angular/material/radio';
+import { MyListComponent } from './myList/myList.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
     declarations: [
       ProfileComponent,
+      MyListComponent
     ],
     imports: [
       HomeRoutingModule,
 
       FormsModule,
       ReactiveFormsModule,
-
+      MatDialogModule,
       MatProgressSpinnerModule,
       MatRadioModule,
       MatInputModule,
@@ -47,10 +50,8 @@ import { MatRadioModule } from '@angular/material/radio';
       MatSnackBarModule,
       MatDividerModule,
       CommonModule
-
-
     ],
-    providers: [ ListasService, GenerosService, EditorasService ],
+    providers: [ ListasService, GenerosService, EditorasService, MatDialog ],
     bootstrap: []
   })
   export class ProfileModule { }

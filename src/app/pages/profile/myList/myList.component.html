@@ -1,0 +1,32 @@
+<div class="modal">
+  <h1 class="modal-title" mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+    Minha Lista
+    <a class="cancelIcon" mat-button form="none" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </h1>
+  <div class="content">
+    
+    <div *ngFor="let item of data.todosStatus">
+      <h2 style="margin-bottom: 5px; margin-top: 5px; text-align: left;">{{item.nome}}</h2>
+      <mat-divider></mat-divider>
+      <div fxLayout="column" class="divStatus" style="background-color: {{item.cor}};">
+        <mat-card class="cardLivro" *ngFor="let book of item.Livros">
+          <div fxLayout="row">
+            <img class="capa" src="../../../../assets/img/BookRed.png" width="60" height="75">
+            <div fxLayout="column" class="descriptionBook">
+              <div> <span>Titulo:</span> {{book.titulo}}</div>
+              <div> <span>Editora:</span> {{book.editora}}</div>
+              <div> <span>Gênero:</span> {{book.genero}}</div>
+            </div>
+          </div>       
+        </mat-card>
+      </div>
+    </div>
+
+  
+  </div>
+      
+</div>
+
+
