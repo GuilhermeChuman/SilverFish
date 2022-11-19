@@ -8,23 +8,33 @@
   <div class="content">
     
     <div *ngFor="let item of data.todosStatus">
-      <h2 style="margin-bottom: 5px; margin-top: 5px; text-align: left;">{{item.nome}}</h2>
-      <mat-divider></mat-divider>
-      <div fxLayout="column" class="divStatus" style="background-color: {{item.cor}};">
-        <mat-card class="cardLivro" *ngFor="let book of item.Livros">
-          <div fxLayout="row">
-            <img class="capa" src="../../../../assets/img/BookRed.png" width="60" height="75">
-            <div fxLayout="column" class="descriptionBook">
-              <div> <span>Titulo:</span> {{book.titulo}}</div>
-              <div> <span>Editora:</span> {{book.editora}}</div>
-              <div> <span>Gênero:</span> {{book.genero}}</div>
-            </div>
-          </div>       
-        </mat-card>
-      </div>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false"
+                            style="background-color: {{item.cor}};">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 style="margin-bottom: 5px; margin-top: 5px; text-align: left;">{{item.nome}}</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="column" class="divStatus" style="background-color: {{item.cor}};">
+          <mat-card class="cardLivro" *ngFor="let book of item.Livros">
+            <div fxLayout="row">
+              <img class="capa" src="../../../../assets/img/BookRed.png" width="60" height="75">
+              <div fxLayout="column" class="descriptionBook">
+                <div> <span>Titulo:</span> {{book.titulo}}</div>
+                <div> <span>Editora:</span> {{book.editora}}</div>
+                <div> <span>Gênero:</span> {{book.genero}}</div>
+              </div>
+            </div>       
+          </mat-card>
+        </div>
+
+      </mat-expansion-panel>
+      
     </div>
 
-  
   </div>
       
 </div>

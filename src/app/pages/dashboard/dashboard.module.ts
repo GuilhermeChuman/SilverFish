@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
 import { DashboardComponent } from './dashboard.component';
+import { LivrosService } from '../manageBooks/listLivros/livros.service';
+import { EmprestimoService } from 'src/app/services/emprestimo.service';
 
 @NgModule({
     declarations: [
@@ -42,7 +44,7 @@ import { DashboardComponent } from './dashboard.component';
       MatTableModule,
       MatProgressSpinnerModule,
     ],
-    providers: [],
+    providers: [LivrosService, EmprestimoService],
     bootstrap: []
   })
   export class DashboardModule { }

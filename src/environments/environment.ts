@@ -16,6 +16,7 @@ export const environment = {
   getStatus: '/getStatus',
 
   emprestimos_getAll: '/emprestimo',
+  emprestimosStatus: '/emprestimosStatus',
   aprovarEmprestimo: '/aprovarEmprestimo/',
   devolverLivro: '/devolverLivro/',
   recusarEmprestimo: '/recusarEmprestimo/',
@@ -25,6 +26,7 @@ export const environment = {
   verifyEmprestimo: '/verifyEmprestimoLivro/',
 
   get_allLivros: '/livros',
+  allLivrosStatus: '/allLivrosStatus',
   get_allLivrosSemEmprestimo: '/getLivrosSemEmprestimo',
   get_livroById: '/livros/',
   add_livro: '/addLivro',

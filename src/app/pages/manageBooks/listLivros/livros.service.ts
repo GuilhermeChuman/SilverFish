@@ -26,6 +26,22 @@ export class LivrosService {
         });
     }
 
+    allLivrosStatus():Promise<any>{
+
+        return new Promise((resolve, reject) =>{
+            this._apiService.getAll(environment.allLivrosStatus).then((resp:any) =>{
+                if(resp.success)
+                    resolve(resp.data);
+                else{
+                    this._snack.open('Ocorreu algum erro ao acessar os Livros, por favor contate o administrador', 'OK');
+                    reject();
+                }
+                    
+            });
+        });
+        
+    }
+
     //LIVROS SEM EMPRESTIMO
     getLivrosSemEmprestimo() : Promise<any> {
         return new Promise((resolve, reject) =>{

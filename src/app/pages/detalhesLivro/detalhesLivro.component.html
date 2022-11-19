@@ -41,6 +41,10 @@
     </div>
 
     <div class="button" fxLayout="row" fxLayoutAlign="end end">
+        <button class="butonEmprestimo disabled-{{!botaoListaAtivo}}" (click)="modalLista()" mat-button [disabled]="!botaoAtivo">
+            {{botaoLista}}
+        </button>
+        
         <button class="butonEmprestimo disabled-{{!botaoAtivo}}" (click)="openModal()" mat-button [disabled]="!botaoAtivo">
             {{botaoEmprestimo}}
         </button>

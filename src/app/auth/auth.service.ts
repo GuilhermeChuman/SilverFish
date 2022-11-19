@@ -16,7 +16,7 @@ export class AuthService {
         
         return this._apiService.login(data).then( (resp:any) => {
             if(resp.success){
-                localStorage.setItem('userData', this.tokenService.tokeninze(resp.data));
+                localStorage.setItem('userData', this.tokenService.tokenize(resp.data));
                 return true;
             }
             else{

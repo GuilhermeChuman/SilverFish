@@ -1,9 +1,67 @@
 <div class="body">
-    <h1>Empréstimos</h1>
-    <mat-divider></mat-divider>
     
-    
+    <div class="content" fxLayout="column">
 
+        <div class="statistics" fxLayout="column">
+
+            <h1>Acervo</h1>
+            <mat-divider></mat-divider>
+            
+            <div class="statLine" fxLayout="row wrap">
+
+                <div fxLayout="column" fxLayoutAlign="start start"  fxFlex="15">
+                    <div class="line" fxLayout="row" fxLayoutAlign="start end" >
+                        <h3>Total de livros: &nbsp;</h3> 
+                        {{dadosLivros ? dadosLivros.total : ''}}
+                    </div>
+
+                    <div class="line" fxLayout="row" fxLayoutAlign="start end" >
+                        <h3>Emprestados: &nbsp;</h3>
+                        {{dadosLivros ? dadosLivros.emprestados : ''}}
+                    </div>
+                    
+                    <div class="line" fxLayout="row" fxLayoutAlign="start end" >
+                        <h3>Disponíveis: &nbsp;</h3>
+                        {{dadosLivros ? dadosLivros.disponiveis : ''}}
+                    </div>
+                </div>
+                
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="42">
+                    <h3>Livros por gênero:</h3>
+                    <canvas class="chart" id="livrosPorGenero" width="2" height="1"></canvas>
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="42">
+                    <h3>Livros mais emprestados:</h3>
+                    <canvas class="chart" id="maisEmprestados" width="2" height="1"></canvas>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <div class="statistics" fxLayout="column">
+            <h1>Empréstimos</h1>
+            <mat-divider></mat-divider>
+            
+            <div class="statLine" fxLayout="row wrap">
+
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="40">
+                    <h3>Relação de Empréstimos</h3>
+                    <canvas class="chart" id="listaEmprestimo" width="2" height="1"></canvas>
+                </div>
+                
+                <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="40">
+                    <h3>Empréstimos por Gênero</h3>
+                    <canvas class="chart" id="listaGenero" width="2" height="1"></canvas>
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+    
     <div class="footer"></div>
 
 </div>

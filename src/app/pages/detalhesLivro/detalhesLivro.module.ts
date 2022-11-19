@@ -25,6 +25,8 @@ import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLiv
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
 import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarListaModal.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ListasService } from 'src/app/services/listas.service';
 
 @NgModule({
     declarations: [
@@ -34,10 +36,9 @@ import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarLis
     ],
     imports: [
       DetalhesLivroRoutingModule,
-
       FormsModule,
       ReactiveFormsModule,
-  
+      MatSelectModule,
       MatInputModule,
       MatSidenavModule,
       MatButtonModule,
@@ -54,10 +55,8 @@ import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarLis
       MatBadgeModule,
       CommonModule,
       MatDialogModule,
-
-      
     ],
-    providers: [LivrosService, MatDialog, EmprestimoService],
+    providers: [LivrosService, MatDialog, EmprestimoService, ListasService],
     bootstrap: []
   })
   export class DetalhesLivroModule { }

@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JWTService } from 'src/app/auth/jwt.service';
 import { EmprestimoService } from 'src/app/services/emprestimo.service';
+import { ListasService } from 'src/app/services/listas.service';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { AdicionarListaModalComponent } from './adicionarListaModal/adicionarListaModal.component';
 import { EmprestarLivroModalComponent } from './emprestarLivroModal/emprestarLivroModal.component';
@@ -18,6 +20,7 @@ export class DetalhesLivroComponent implements OnInit{
 
   id:any;
   bookData: any;
+  userData = this._jwtService.decodeData(localStorage.getItem('userData'));
 
   titulo = '';
   descricao = '';
@@ -25,10 +28,16 @@ export class DetalhesLivroComponent implements OnInit{
   volume = '';
   autores = ' ';
 
+  action = 'create';
+
   botaoEmprestimo = 'Solicitar Empréstimo';
   botaoAtivo = true;
 
+  botaoLista = 'Adicionar na Lista';
+  botaoListaAtivo = true;
+
   constructor(private routerParam: ActivatedRoute,
+              private _jwtService: JWTService,
               private _emprestimosService: EmprestimoService,
               public dialog: MatDialog,
               private _livroService: LivrosService){
@@ -36,6 +45,7 @@ export class DetalhesLivroComponent implements OnInit{
 
 
   async ngOnInit() {
+
     this.getParam();
     await this._livroService.getLivroById(this.id).then( (resp:any) =>{
       this.bookData = resp;
@@ -90,13 +100,17 @@ export class DetalhesLivroComponent implements OnInit{
   modalLista(){
 
     const dialogRef = this.dialog.open(AdicionarListaModalComponent, {
-      disableClose: true
+      disableClose: true,
+      data: {
+        idLivro: this.bookData.id,
+        idLista: this.userData.idLista,
+        action: this.action
+      }
     });
-
+    
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this._emprestimosService.solicitarEmprestimo(this.id);
-        this.ngOnInit();
+
       }
     });
 

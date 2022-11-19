@@ -7,13 +7,32 @@
   </h1>
   <div class="content">
     
-    <h3>Deseja solicitar o empréstimo do livro?</h3>
+    <form class="form" fxLayout="column" [formGroup]="livrosForm">
+        
+      <h3>Gerenciar o Livro na sua lista</h3>
+
+      <div fxLayout="row">
+        <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
+          <mat-label>Situação do Livro</mat-label>
+          <mat-select formControlName="idSituacao" #singleSelect>
+            <mat-option *ngIf="action == 'edit'" value="R">
+              Remover da lista
+            </mat-option>
+            <mat-option *ngFor="let i of status" [value]="i.id">
+              {{i.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </div>
+      
   
       <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
         <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
         <button class="confirm" mat-raised-button (click)="submit()">Confirmar</button>
       </div>
   
+    </form>
+    
   </div>
       
 </div>

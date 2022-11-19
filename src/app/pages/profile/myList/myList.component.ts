@@ -18,6 +18,8 @@ export class MyListComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public _data: any,
   ){} 
   
+  panelOpenState = false;
+
   data = this._data;
   mainList: any[] = [];
 

@@ -24,6 +24,7 @@ import { GenerosService } from '../manageBooks/listGeneros/generos.service';
 import { MatRadioModule } from '@angular/material/radio';
 import { MyListComponent } from './myList/myList.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       HomeRoutingModule,
 
       FormsModule,
+      MatExpansionModule,
       ReactiveFormsModule,
       MatDialogModule,
       MatProgressSpinnerModule,

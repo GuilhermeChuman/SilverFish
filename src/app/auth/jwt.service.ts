@@ -11,7 +11,7 @@ export class JWTService {
     }
     
 
-    tokeninze(data: any){
+    tokenize(data: any){
         let now = new Date().toString();
         now = CryptoJS.AES.encrypt(now, 'IDKFA').toString();
 
@@ -21,7 +21,7 @@ export class JWTService {
         let salty2 = (Math.floor(Math.random() * (12000 - 11000 + 1)) + 11000).toString();
         salty2 = CryptoJS.AES.encrypt(salty2, 'IDKFA').toString();
 
-        let user = data.id+';'+data.login+';'+data.nome+';'+data.password+';'+data.status+';';
+        let user = data.idLista+';'+data.id+';'+data.login+';'+data.nome+';'+data.password+';'+data.status+';';
 
         return CryptoJS.AES.encrypt(user, 'IDKFA').toString()+'.'+salty1+'.'+now+'.'+salty2;
     }
@@ -64,11 +64,12 @@ export class JWTService {
             let dataArray = tokenData.split(';');
     
             response = {
-                id: dataArray[0],
-                login: dataArray[1],
-                nome: dataArray[2],
-                password: dataArray[3],
-                status: dataArray[4]
+                idLista: dataArray[0],
+                id: dataArray[1],
+                login: dataArray[2],
+                nome: dataArray[3],
+                password: dataArray[4],
+                status: dataArray[5]
             }
 
             return response;
@@ -91,7 +92,7 @@ export class JWTService {
 
         let roleArray = tokenData.split(';');
 
-        return roleArray[4];
+        return roleArray[5];
 
     }
 

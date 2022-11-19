@@ -26,6 +26,20 @@ export class EmprestimoService {
         });
     }
 
+    public async emprestimosStatus():Promise<any>{
+
+        return this._apiService.getAll(environment.emprestimosStatus).then( (resp:any) =>{
+            if(resp.success){
+                return resp.data;
+            }
+            else{
+                this._snack.open(resp.message, 'OK');
+                return false;
+            }
+        });
+
+    }
+
     public async solicitarEmprestimo(idLivro:any):Promise<boolean> {
 
         let userData = this.tokenService.decodeData(localStorage.getItem('userData'));

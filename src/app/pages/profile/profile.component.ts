@@ -191,6 +191,11 @@ export class ProfileComponent implements OnInit, AfterContentInit{
           legend: {
             display: false,
           }
+        },
+        scales:{
+          x:{
+            display: false
+          }
         }
       }
     });
