@@ -14,8 +14,8 @@
       <div fxLayout="row">
         <mat-form-field fxFlex="100" class="example-full-width" appearance="outline">
           <mat-label>Situação do Livro</mat-label>
-          <mat-select formControlName="idSituacao" #singleSelect>
-            <mat-option *ngIf="action == 'edit'" value="R">
+          <mat-select formControlName="idStatus" #singleSelect>
+            <mat-option *ngIf="action == 'update'" value="R">
               Remover da lista
             </mat-option>
             <mat-option *ngFor="let i of status" [value]="i.id">
@@ -25,7 +25,9 @@
         </mat-form-field> 
       </div>
       
-  
+      <input type="hidden" formControlName="idLista">
+      <input type="hidden" formControlName="idLivro">
+
       <div class="buttons" fxLayout="row" fxLayoutAlign="end center">
         <button class="cancel" mat-stroked-button form="none" (click)="close()">Cancelar</button>
         <button class="confirm" mat-raised-button (click)="submit()">Confirmar</button>

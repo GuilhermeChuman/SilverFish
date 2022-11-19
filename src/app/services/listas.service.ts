@@ -39,6 +39,18 @@ export class ListasService {
         });
     }
 
+    public async getStatusLivroNaLista(idLista:any, idLivro:any):Promise<any> {
+
+        return this._apiService.getAll(environment.getStatusLivroNaLista+idLista+'/'+idLivro).then( (resp:any) =>{
+            if(resp.success)
+                return resp.data;
+            else{
+                this._snack.open('Ocorreu um erro na comunicação com o servidor, contate o administrador do sistema', 'OK');
+                return false;
+            }    
+        });
+    }
+
     public async verifyLivroNaLista(idLivro:any):Promise<any> {
 
         let userData = this.tokenService.decodeData(localStorage.getItem('userData'));
@@ -73,11 +85,25 @@ export class ListasService {
         return response;
     }
 
-    public async gravaLivroLista(idEmprestimo:any):Promise<any>{
+    public async gravaLivroLista(form:any):Promise<any>{
 
-        return this._apiService.getAll(environment.aprovarEmprestimo+idEmprestimo).then( (resp:any) =>{
+        return this._apiService.add(environment.gravaLivroLista, form).then( (resp:any) =>{
             if(resp.success){
-                this._snack.open('Solcitação de Empréstimo aprovada!', 'OK');
+                this._snack.open('Operação efetuada!', 'OK');
+                return resp.data;
+            }
+            else{
+                this._snack.open('Ocorreu um erro ao recuperar os dados, favor consultar o administrador!', 'OK');
+                return false;
+            }
+        });
+    }
+
+    public async removeLivroLista(idLista:any, idLivro:any):Promise<any>{
+
+        return this._apiService.getAll(environment.removeLivroLista+idLista+'/'+idLivro).then( (resp:any) =>{
+            if(resp.success){
+                this._snack.open('Operação efetuada!', 'OK');
                 return resp.data;
             }
             else{

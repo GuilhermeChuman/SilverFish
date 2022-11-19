@@ -21,6 +21,7 @@ export class DetalhesLivroComponent implements OnInit{
   id:any;
   bookData: any;
   userData = this._jwtService.decodeData(localStorage.getItem('userData'));
+  status: any;
 
   titulo = '';
   descricao = '';
@@ -39,6 +40,7 @@ export class DetalhesLivroComponent implements OnInit{
   constructor(private routerParam: ActivatedRoute,
               private _jwtService: JWTService,
               private _emprestimosService: EmprestimoService,
+              private _listasService: ListasService,
               public dialog: MatDialog,
               private _livroService: LivrosService){
   }
@@ -50,6 +52,23 @@ export class DetalhesLivroComponent implements OnInit{
     await this._livroService.getLivroById(this.id).then( (resp:any) =>{
       this.bookData = resp;
     });
+
+    this.botaoAtivo = await this._livroService.verifyLivroNaLista(this.userData.idLista, this.bookData.id)
+
+    if(this.botaoAtivo){
+      this.action = 'update';
+      this.botaoLista = 'Gerenciar na Lista';
+      this.status = await this._listasService.getStatusLivroNaLista(this.userData.idLista, this.bookData.id)
+    }
+    else{
+      this.action = 'create';
+      this.botaoLista = 'Adicionar na Lista';
+      this.status = null;
+    }
+    
+    this.autores = '';
+    this.palavrasChave = '';
+
 
     this.titulo = this.bookData.titulo;
     this.descricao = this.bookData.descricao;
@@ -104,13 +123,26 @@ export class DetalhesLivroComponent implements OnInit{
       data: {
         idLivro: this.bookData.id,
         idLista: this.userData.idLista,
+        idStatus: this.status,
         action: this.action
       }
     });
     
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-
+        let form = {
+          idLista: parseInt(result.idLista),
+          idLivro: result.idLivro,
+          idStatus: result.idStatus
+        }
+        if(result.idStatus == 'R'){
+          this._listasService.removeLivroLista(result.idLista, result.idLivro);
+          this.ngOnInit();
+        }
+        else{
+          this._listasService.gravaLivroLista(form);
+          this.ngOnInit();
+        }
       }
     });
 

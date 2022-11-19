@@ -26,6 +26,10 @@ export const environment = {
   verifyEmprestimo: '/verifyEmprestimoLivro/',
 
   get_allLivros: '/livros',
+  verifyLivroNaLista: '/verifyLivroNaLista/',
+  getStatusLivroNaLista: '/getStatusLivroNaLista/',
+  gravaLivroLista: '/gravaLivroLista',
+  removeLivroLista: '/removeLivroLista/',
   allLivrosStatus: '/allLivrosStatus',
   get_allLivrosSemEmprestimo: '/getLivrosSemEmprestimo',
   get_livroById: '/livros/',

@@ -28,7 +28,7 @@ export class AdicionarListaModalComponent implements OnInit{
     idLista: new FormControl(null)
   });
   
-  data = this._data.data;
+  data = this._data;
   action = this.data.action;
 
   status: any[] = [];
@@ -40,9 +40,9 @@ export class AdicionarListaModalComponent implements OnInit{
     this.status = await this._ListasService.getStatus();
 
     this.livrosForm = new FormGroup({
-      idStatus: new FormControl(null,Validators.required),
-      idLivro: new FormControl(null),
-      idLista: new FormControl(null)
+      idStatus: new FormControl(this.data.idStatus,Validators.required),
+      idLivro: new FormControl(this.data.idLivro),
+      idLista: new FormControl(this.data.idLista)
     });
 
   }
@@ -52,7 +52,8 @@ export class AdicionarListaModalComponent implements OnInit{
   }
 
   submit(){
-    this.dialogRef.close(true);
+    const formControl = this.livrosForm.getRawValue();
+    this.dialogRef.close(formControl);
   }
 
 }

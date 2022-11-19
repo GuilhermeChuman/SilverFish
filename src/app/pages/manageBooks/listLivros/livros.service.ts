@@ -26,6 +26,20 @@ export class LivrosService {
         });
     }
 
+    verifyLivroNaLista(idUsuario:any, idLivro:any):Promise<any>{
+        return new Promise((resolve, reject) =>{
+            this._apiService.getAll(environment.verifyLivroNaLista+idUsuario+'/'+idLivro).then((resp:any) =>{
+                if(resp.success)
+                    resolve(resp.data);
+                else{
+                    this._snack.open('Ocorreu algum erro ao acessar os Livros, por favor contate o administrador', 'OK');
+                    reject();
+                }
+                    
+            });
+        });  
+    }
+
     allLivrosStatus():Promise<any>{
 
         return new Promise((resolve, reject) =>{
