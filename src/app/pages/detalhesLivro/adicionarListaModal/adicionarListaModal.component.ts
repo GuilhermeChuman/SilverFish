@@ -30,12 +30,11 @@ export class AdicionarListaModalComponent implements OnInit{
   
   data = this._data;
   action = this.data.action;
+  msg = this.data.msg;
 
   status: any[] = [];
 
   async ngOnInit(){
-
-    console.log(this.data);
 
     this.status = await this._ListasService.getStatus();
 

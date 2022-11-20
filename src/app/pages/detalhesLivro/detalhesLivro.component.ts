@@ -30,6 +30,7 @@ export class DetalhesLivroComponent implements OnInit{
   autores = ' ';
 
   action = 'create';
+  msg = 'Gerenciar o Livro na sua lista';
 
   botaoEmprestimo = 'Solicitar Empréstimo';
   botaoAtivo = true;
@@ -111,6 +112,11 @@ export class DetalhesLivroComponent implements OnInit{
       if(result){
         this._emprestimosService.solicitarEmprestimo(this.id);
         this.ngOnInit();
+        if(this.action == 'create'){
+          this.msg = 'Vimos que você se interessou por esse livro, gostaria de adicionar à sua lista?';
+          this.modalLista();
+        }
+        
       }
     });
 
@@ -124,7 +130,8 @@ export class DetalhesLivroComponent implements OnInit{
         idLivro: this.bookData.id,
         idLista: this.userData.idLista,
         idStatus: this.status,
-        action: this.action
+        action: this.action,
+        msg: this.msg,
       }
     });
     
