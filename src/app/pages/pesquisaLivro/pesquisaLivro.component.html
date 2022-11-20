@@ -6,8 +6,8 @@
             <a [routerLink]="['/pages/detalhes']" [queryParams]="{id: livro.id}"  class="capa" matTooltip="{{livro.titulo}}">
                 <img class="imgCapa" src="../../../assets/img/BookRed.png">
                 <p>{{livro.titulo}}</p>
-                <mat-chip-list aria-label="Fish selection">
-                    <mat-chip class="chipLido">Lido</mat-chip>
+                <mat-chip-list *ngIf="livro.status" aria-label="Fish selection">
+                    <mat-chip style="background-color: {{livro.cor}};">{{livro.status}}</mat-chip>
                 </mat-chip-list>
             </a> 
         </div>

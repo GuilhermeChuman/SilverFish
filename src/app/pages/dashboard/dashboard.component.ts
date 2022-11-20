@@ -65,7 +65,6 @@ export class DashboardComponent {
         data: {
           labels: ListaEmprestimoLabels,
           datasets: [{
-            label: 'My First Dataset',
             data: ListaEmprestimoData,
             backgroundColor: ListaEmprestimoColors,
             hoverOffset: 4
@@ -112,7 +111,6 @@ export class DashboardComponent {
       data: {
         labels: ListaPorGeneroLabels,
         datasets: [{
-          label: 'My First Dataset',
           data: ListaPorGeneroData,
           backgroundColor: ListaPorGeneroColors,
           hoverOffset: 4

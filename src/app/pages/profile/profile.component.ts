@@ -144,7 +144,6 @@ export class ProfileComponent implements OnInit, AfterContentInit{
         data: {
           labels: statusLabels,
           datasets: [{
-            label: 'My First Dataset',
             data: statusValues,
             backgroundColor: statusColors,
             hoverOffset: 4
@@ -176,7 +175,6 @@ export class ProfileComponent implements OnInit, AfterContentInit{
       data: {
         labels: this.classificacoesLabels,
         datasets: [{
-          label: 'My First Dataset',
           data: this.classificacoesValues,
           backgroundColor: this.classificacoesColors
         }]

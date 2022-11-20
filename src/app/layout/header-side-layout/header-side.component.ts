@@ -21,8 +21,10 @@ export class HeaderSideComponent implements OnInit {
   }
 
   search(event: any) {
-    const query = event.target.value;   
-    this.router.navigate(['pages/searchBooks'], {queryParams: {search: query}});
+    const query = event.target.value;
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['pages/searchBooks'], {queryParams: {search: query}});
+    }); 
   }
 
   delay(ms: number) {

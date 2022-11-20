@@ -19,6 +19,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { HomeComponent } from './home.component';
+import { JWTService } from 'src/app/auth/jwt.service';
+import { ListasService } from 'src/app/services/listas.service';
+import { CommonModule } from '@angular/common';
+import { LivrosService } from '../manageBooks/listLivros/livros.service';
 
 @NgModule({
     declarations: [
@@ -29,7 +33,7 @@ import { HomeComponent } from './home.component';
 
       FormsModule,
       ReactiveFormsModule,
-  
+      CommonModule,
       MatInputModule,
       MatSidenavModule,
       MatButtonModule,
@@ -44,7 +48,7 @@ import { HomeComponent } from './home.component';
       MatTooltipModule,
       MatChipsModule
     ],
-    providers: [],
+    providers: [JWTService, ListasService, LivrosService],
     bootstrap: []
   })
   export class HomeModule { }

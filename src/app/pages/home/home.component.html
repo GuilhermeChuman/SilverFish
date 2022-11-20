@@ -1,5 +1,8 @@
 <div class="body">
-    <h1>Recomendações para você</h1>
+
+    <!-- Modificações futuras planejadas -->
+
+    <!-- <h1>Recomendações para você</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
         <a href="" class="capa" href="/pages/detalhes?id={{id}}" matTooltip="Nome do livro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">
@@ -20,22 +23,31 @@
         <a href="">
             <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
         </a> 
-    </div>
+    </div> -->
 
     <h1>Você está lendo</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <div *ngFor="let book of livros">
+            <a href="" class="capa" href="/pages/detalhes?id={{book.id}}" matTooltip="{{book.titulo}}">
+                <img src="../../../assets/img/BookRed.png" width="150" height="200">
+                <p>{{book.titulo}}</p>
+            </a>
+        </div>
     </div>
 
     <h1>Últimos livros</h1>
     <mat-divider></mat-divider>
     <div class="row" fxLayout="row wrap">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
-        <img class="capa" src="{{fontesCapa+endpointCapa}}" width="150" height="200">
+        <div *ngFor="let book of lastBooks">
+            <a href="" class="capa" href="/pages/detalhes?id={{book.id}}" matTooltip="{{book.titulo}}">
+                <img src="../../../assets/img/BookRed.png" width="150" height="200">
+                <mat-chip-list *ngIf="book.status" aria-label="Fish selection">
+                    <mat-chip style="background-color: {{book.cor}};">{{book.status}}</mat-chip>
+                </mat-chip-list>
+                <p>{{book.titulo}}</p>
+            </a>
+        </div>
     </div>
 
     <div class="footer"></div>

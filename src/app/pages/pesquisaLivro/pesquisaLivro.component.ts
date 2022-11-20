@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { LivrosService } from '../manageBooks/listLivros/livros.service';
 import { JWTService } from 'src/app/auth/jwt.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pesquisa-livro',
@@ -22,12 +23,15 @@ export class PesquisaLivroComponent implements OnInit{
   actualPagination: any[] = [];
   pagesPerFile: any[] = [];
 
+  blankPage = false;
+
   actualPageIndex = 0;
   actualPaginationIndex = 0;
 
   loaded = false;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private _snack: MatSnackBar,
               private tokenService: JWTService,
               private _livrosService: LivrosService) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -75,6 +79,8 @@ export class PesquisaLivroComponent implements OnInit{
     else{
 
       this._livrosService.getFilterLivros(userData.id, formData).then( (resp:any) =>{
+        if(resp.length == 0)
+          this._snack.open('Nenhum livro encontrado na pesquisa', 'OK');
         this.books = resp;
         for (let i = 0; i < this.books.length; i += this.chunkSize)
           this.paginator.push(this.books.slice(i, i + this.chunkSize));
