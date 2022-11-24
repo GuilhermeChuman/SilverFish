@@ -5,6 +5,7 @@ export const environment = {
   api_url: 'https://fastlib.herokuapp.com',
 
   auth_login: '/auth',
+  auth_signup: '/signup',
 
   get_allUsers: '/usuarios',
 

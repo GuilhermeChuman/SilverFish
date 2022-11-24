@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
     this.myList = await this._ListaService.getLista(this.userData.id)
     let acervo = await this._LivrosService.getLivros();
 
-    console.log(acervo);
-
     function compare( a:any, b:any ) {
       if ( a.id < b.id ){
         return -1;

@@ -14,6 +14,12 @@ export class APIService {
         });
     }
 
+    async signup(data:any){
+        return await this.http.post(`${ environment.api_url }${environment.auth_signup}`,data).toPromise().then(resp =>{
+            return resp;
+        });
+    }
+
     async getAll(route:any){
         return await this.http.get(`${ environment.api_url }${route}`).toPromise().then(resp =>{
             return resp;

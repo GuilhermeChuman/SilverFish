@@ -77,6 +77,10 @@ const routes: Routes = [
         path: 'auth/recovery', 
         loadChildren: () => import('../auth/recoverPassword/recoveryPassword.module').then(m => m.RecoverPasswordModule)
       },
+      { 
+        path: 'auth/activateLogin', 
+        loadChildren: () => import('../auth/activateLogin/activateLogin.module').then(m => m.ActivateLoginModule)
+      },
     ]
   },
   {
