@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-recover-password',
@@ -9,19 +10,24 @@ import { ActivatedRoute } from '@angular/router';
 export class ActivateLoginComponent implements OnInit {
 
   userToken = '';
+  tokenValid = false;
+  buttonData: any;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, 
+              private router: Router, 
+              private _authService: AuthService) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.userToken = params['token'];
     });
   }
 
   ngOnInit(): void {
-    console.log(this.userToken);
+    this._authService.validateToken(this.userToken).then( (resp:any) =>{
+      this.tokenValid = resp;
+    })
   }
 
-  back(){
-    
+  login(){
+    this.router.navigate(['/auth/login']);
   }
-
 }

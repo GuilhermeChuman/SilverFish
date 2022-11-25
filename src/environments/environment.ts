@@ -10,6 +10,7 @@ export const environment = {
 
   auth_login: '/auth',
   auth_signup: '/signup',
+  validateToken: '/validateToken/',
 
   get_allUsers: '/usuarios',
 

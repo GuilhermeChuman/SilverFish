@@ -4,6 +4,7 @@ import { APIService } from '../services/api.service';
 import { JWTService } from './jwt.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 
@@ -41,6 +42,19 @@ export class AuthService {
             else{
                 this._snack.open('Alguma coisa deu errado, contate o administrador do sistema', 'OK');
                 return false
+            }
+                
+        });
+    }
+
+    public async validateToken(data:any):Promise<boolean> {
+        
+        return this._apiService.getAll(`${environment.validateToken}${data}`).then( (resp:any) => {
+            if(resp.success){
+                return true;
+            }
+            else{
+                return false;
             }
                 
         });

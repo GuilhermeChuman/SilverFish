@@ -5,12 +5,16 @@
             <img src="../../../assets/img/sf_logo.png" width="75" height="75">
             <h1>SilverFish</h1>
 
-            <div class="auth" fxLayout="column">
-
+            <div *ngIf="tokenValid" class="auth" fxLayout="column">
+                <h3>Login habilitado! Clique para efetuar o login</h3>
+                <button fxFlex="100" class="btEnter" (click)="login()"
+                        mat-raised-button color="primary">
+                        Entrar
+                </button>
             </div>
 
-            <div class="auth" fxLayout="column">
-
+            <div *ngIf="!tokenValid" class="auth" fxLayout="column">
+                <h3>Token inválido ou expirado</h3>
             </div>
 
         </mat-card-content>
