@@ -31,6 +31,20 @@ export class AuthService {
         });
     }
 
+    public async recoverPassword(data: any): Promise<boolean> {
+
+        return this._apiService.add(`${environment.recoverPassword}`, data).then( (resp:any) => {
+            if(resp.success){
+                return true;
+            }
+            else{
+                this._snack.open('A recuperação falhou, confira os dados e tente novamente', 'OK');
+                return false;
+            }
+                
+        });
+    }
+
     public async signup(data:any):Promise<boolean> {
         
         return this._apiService.signup(data).then( (resp:any) => {
