@@ -15,7 +15,8 @@ export class RecoverPasswordComponent implements OnInit {
               private router: Router,
               private _authService: AuthService) { }
 
-  regex = new RegExp('[a-z0-9_.-]+@fatec.sp.gov.br');
+  //regex = new RegExp('[a-z0-9_.-]+@fatec.sp.gov.br');
+  regex = "";
 
   recover = new FormGroup({
     login: new FormControl(null, Validators.required),
